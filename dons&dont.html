@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(to right, #ec5408, #e503f5, #ec5408);
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+        .donor-section {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .donor-slider {
+            width: 100%;
+            margin: auto;
+        }
+        .donor-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            margin: 10px;
+        }
+        .donor-img {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .donor-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        .donor-card:hover .donor-img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+        .donor-card h4 {
+            margin-top: 15px;
+            font-size: 1.5em;
+            color: #6a4a3a;
+            font-family: 'Lobster Two', cursive;
+        }
+        .donor-card p {
+            font-size: 1em;
+            color: #555;
+            margin-top: 10px;
+        }
+        h2 {
+            font-family: 'Lobster Two', cursive;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-family: 'Lobster Two', cursive;
+            color: #6a4a3a;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .slider-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .slick-dots {
+            bottom: -30px;
+        }
+        .slick-dots li button:before {
+            color: #fff;
+        }
+        .slick-dots li.slick-active button:before {
+            color: #6a4a3a;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 class="mb-4">Terima Kasih Telah Berkunjung</h2>
+
+    <div class="donor-section">
+        <h3>Profil Donatur</h3>
+        <div class="slider-container">
+            <div class="donor-slider">
+                <div class="donor-card">
+                    <img src="donatur/donatur1.png" alt="Donatur 1" class="donor-img">
+                    <h4>Donatur 1</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+                <div class="donor-card">
+                    <img src="donatur/donatur2.png" alt="Donatur 2" class="donor-img">
+                    <h4>Donatur 2</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+                <div class="donor-card">
+                    <img src="donatur/donatur3.png" alt="Donatur 3" class="donor-img">
+                    <h4>Donatur 3</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+                <div class="donor-card">
+                    <img src="donatur/donatur4.png" alt="Donatur 4" class="donor-img">
+                    <h4>Donatur 4</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+            </div>
+            <div class="donor-slider">
+                <div class="donor-card">
+                    <img src="donatur/donatur5.png" alt="Donatur 5" class="donor-img">
+                    <h4>Donatur 5</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+                <div class="donor-card">
+                    <img src="donatur/donatur6.png" alt="Donatur 6" class="donor-img">
+                    <h4>Donatur 6</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+                <div class="donor-card">
+                    <img src="donatur/donatur7.png" alt="Donatur 7" class="donor-img">
+                    <h4>Donatur 7</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+                <div class="donor-card">
+                    <img src="donatur/donatur8.png" alt="Donatur 8" class="donor-img">
+                    <h4>Donatur 8</h4>
+                    <p>Terima kasih atas dukungannya!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.donor-slider').slick({
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500,
+                infinite: true,
+                arrows: false,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+</body>
+</html>

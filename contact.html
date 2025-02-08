@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fiber Permata Kasih</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Custom CSS for Password Modal -->
+<style>
+    /* Modal background */
+    #passwordModal {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    /* Modal content */
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .modal-header {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .modal-body {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    .modal-input {
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .modal-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .modal-button:hover {
+        background-color: #0056b3;
+    }
+
+    .modal-button i {
+        font-size: 18px; /* Adjust the icon size */
+    }
+</style>
+
+<!-- Password Protection Script -->
+<script>
+    window.onload = function() {
+        // Cek jika password sudah dimasukkan sebelumnya
+        const isPasswordEntered = localStorage.getItem('isPasswordEntered');
+
+        // Jika password sudah dimasukkan, tidak tampilkan modal lagi
+        if (isPasswordEntered) {
+            return;
+        }
+
+        // Create the modal HTML structure
+        var modal = document.createElement('div');
+        modal.id = 'passwordModal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Masukkan Password</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Untuk mengakses situs ini, masukkan password yang benar:</p>
+                    <p>Permata Kasih</p>
+                    <input type="password" id="passwordInput" class="modal-input" placeholder="Masukkan Password" />
+                    <button id="submitPassword" class="modal-button"><i class="fa fa-paper-plane"></i> Masukkan</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Add event listener for submit button
+        document.getElementById('submitPassword').onclick = function() {
+            var enteredPassword = document.getElementById('passwordInput').value;
+
+            // Cek apakah password benar
+            if (enteredPassword === 'Permata Kasih') {
+                modal.style.display = 'none'; // Close the modal if the password is correct
+                localStorage.setItem('isPasswordEntered', 'true'); // Menyimpan status sudah memasukkan password
+                alert('Akses diterima! Anda dapat mengakses situs tanpa terkunci lagi.');
+            } else {
+                alert('Password salah! Akses ditolak.');
+                window.location.href = "https://www.google.com"; // Redirect if password is incorrect
+            }
+        };
+    };
+</script>
+
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+    <a href="index.html" class="navbar-brand">
+        <h1 class="m-0 text-primary">
+            <img src="img/logo.png" alt="Panti Asuhan Logo" style="height: 80px; width: auto; margin-right: 10px;">
+            Fiber Permata Kasih
+        </h1>
+    </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="index.html" class="nav-item nav-link active">Beranda</a>
+                    <a href="about.html" class="nav-item nav-link">Tentang</a>
+                    <a href="classes.html" class="nav-item nav-link">Gallery</a>
+                    <a href="team.html" class="nav-item nav-link">Profil Pengurus</a>
+                    <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>             
+                </div>
+                <!-- Tombol DONASI -->
+                    <a href="donasi.html" class="btn-donasi-premium">
+    <img src="img/donasi2.png" alt="Donasi Button" class="donasi-image">
+                    </a>
+
+<!-- CSS Tambahan -->
+<style>
+    .btn-donasi-premium {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .donasi-image {
+        max-height: 90px; /* Sesuaikan dengan tinggi navbar */
+        width: auto; /* Biarkan lebar menyesuaikan proporsi */
+        border-radius: 50%;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .btn-donasi-premium:hover .donasi-image {
+        transform: scale(1.1); /* Sedikit membesar saat hover */
+        box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.6); /* Efek glow saat hover */
+    }
+</style>
+
+        </nav>
+        <!-- Navbar End -->
+
+
+        <!-- Page Header End -->
+        <div class="container-xxl py-5 page-header position-relative mb-5">
+            <div class="container py-5">
+                <h1 class="display-2 text-white animated slideInDown mb-4">Hubungi Kami</h1>
+                <nav aria-label="breadcrumb animated slideInDown">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="#">Halaman</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="Kontak">Hubungi Kami</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+        <!-- Contact Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Kenali Kami Lebih Dekat </h1>
+                    <p>Kunjungi Tempat Kami untuk informasi lebih lanjut tentang misi dan visi kami di Panti Asuhan Fiber Permata Kasih. Kami berkomitmen untuk memberikan cinta dan perawatan terbaik bagi setiap anak. Bergabunglah bersama kami dalam memberikan masa depan yang cerah.</p>
+                </div>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6 col-lg-4 text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 75px; height: 75px;">
+                            <i class="fa fa-map-marker-alt fa-2x text-primary"></i>
+                        </div>
+                        <h6>Jl. Bunga Ester VIII No.9, Padang Bulan Selayang II, Kec. Medan Selayang, Kota Medan, Sumatera Utara 20131, Indonesia</h6>
+                    </div>
+                    <div class="col-md-6 col-lg-4 text-center wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 75px; height: 75px;">
+                            <i class="fa fa-envelope-open fa-2x text-primary"></i>
+                        </div>
+                        <h6>fiberpermatakasih@gmail.com</h6>
+                    </div>
+                    <div class="col-md-6 col-lg-4 text-center wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 75px; height: 75px;">
+                            <i class="fa fa-phone-alt fa-2x text-primary"></i>
+                        </div>
+                        <h6>+62 821-7781-5570</h6>
+                    </div>
+                </div>
+               <!-- Appointment Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="bg-light rounded shadow-lg overflow-hidden">
+            <div class="row g-0">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="h-100 d-flex flex-column justify-content-center p-5">
+                        <h1 class="mb-4 text-primary">Jadwalkan Kunjungan Anda</h1>
+                        <form id="appointmentForm">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 shadow-sm" id="gname" placeholder="Nama Lengkap">
+                                        <label for="gname">Nama Lengkap</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control border-0 shadow-sm" id="gmail" placeholder="Alamat Email">
+                                        <label for="gmail">Alamat Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 shadow-sm" id="cname" placeholder="Nama Panggil">
+                                        <label for="cname">Nama Panggil</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 shadow-sm" id="cage" placeholder="No Telepon">
+                                        <label for="cage">No Telepon</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control border-0 shadow-sm" placeholder="Pesan" id="message" style="height: 100px"></textarea>
+                                        <label for="message">Pesan</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary d-inline-flex align-items-center py-3 px-4 rounded-pill shadow-lg btn-send" type="button" onclick="sendToWhatsApp()">Kirim <i class="fa fa-paper-plane ms-2"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <iframe class="position-relative rounded w-100 h-100"
+                        src="https://www.bing.com/search?q=Jl.+Bunga+Ester+VIII+No.9%2C+Padang+Bulan+Selayang+II%2C+Kec.+Medan+Selayang%2C+Kota+Medan%2C+Sumatera+Utara+20131&cvid=bd5612546b294c0c9792ef3101857b21&gs_lcrp=EgRlZGdlKgYIABBFGDsyBggAEEUYO9IBBzc2NGowajSoAgiwAgE&FORM=ANAB01&PC=U531"
+                        frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment End -->
+
+<script>
+function sendToWhatsApp() {
+    var name = document.getElementById("gname").value;
+    var email = document.getElementById("gmail").value;
+    var nickname = document.getElementById("cname").value;
+    var phone = document.getElementById("cage").value;
+    var message = document.getElementById("message").value;
+
+    var phoneNumber = "+6282177815570"; // Ganti dengan nomor WhatsApp Anda (gunakan format internasional tanpa "+")
+    
+    var whatsappMessage = "Halo, saya ingin menjadwalkan kunjungan:\n\n" +
+        "Nama Lengkap: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Nama Panggil: " + nickname + "\n" +
+        "No Telepon: " + phone + "\n" +
+        "Pesan: " + message;
+
+    var encodedMessage = encodeURIComponent(whatsappMessage);
+    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+
+    window.open(whatsappURL, "_blank");
+}
+</script>
+
+<!-- CSS Tambahan -->
+<style>
+    .form-control {
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .form-floating input:focus, .form-floating textarea:focus {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .btn-send {
+        background-color: #d14f24;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 50px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 12px 20px;
+    }
+
+    .btn-send:hover {
+        background-color: #b34200;
+        transform: scale(1.05);
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-send i {
+        font-size: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-send:hover i {
+        transform: translateX(6px);
+    }
+
+    .shadow-lg {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+
+        <!-- Appointment End -->
+
+
+       <!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s" style="border-top: 1px solid #ccc;">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-white mb-4">Hubungi Kami</h3>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Bunga Ester VIII No.9, Padang Bulan Selayang II, Kec. Medan Selayang, Kota Medan, Sumatera Utara 20131</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 821-7781-5570</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>fiberpermatakasih@gmail.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://wa.me/6282177815570"><i class="fab fa-whatsapp"></i></a>                              
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-white mb-4">Berita Terkini</h3>
+                <p>Kami sangat bangga dengan prestasi anak-anak kami. Mereka telah menunjukkan bahwa mereka memiliki potensi dan bakat yang luar biasa," kata Ibu Sri, Kepala Panti Asuhan Fiber Permata Kasih.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <form id="emailForm">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="email" id="email" name="email" placeholder="Your email" required>
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Kirim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#" style="color: #fff; text-decoration;">FiberPermataKasih</a>, All Right Reserved. 
+                    Designed By <a class="border-bottom" href="#" style="color: #fff; text-decoration;">Permata Kasih</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-menu">
+                        <a href="#" style="color: #fff; text-decoration: none; margin-right: 10px;">Beranda</a> 
+                        <a href="#" style="color: #fff; text-decoration: none; margin-left: 10px; margin-right: 10px;">Cookies</a> 
+                        <a href="#" style="color: #fff; text-decoration: none; margin-left: 10px; margin-right: 10px;">Bantuan</a> |
+                        <a href="#" style="color: #fff; text-decoration: none; margin-left: 10px;">FQAs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+

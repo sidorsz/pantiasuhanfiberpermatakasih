@@ -1,0 +1,365 @@
+<!DOCTYPE html> 
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video Aktivitas Anak Panti Asuhan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.light-mode {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f9f9f9;
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 15px 0;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+
+        .mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff4f00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .video-card {
+            background-color: white;
+            margin: 10px;
+            width: 400px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-card video {
+            width: 100%;
+            height: auto;
+        }
+        .video-card .info {
+            padding: 15px;
+        }
+        .video-card .info h3 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: bold;
+        }
+        .video-card .info p {
+            font-size: 14px;
+            color: #555;
+        }
+        .comment-section {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        .comment-section button {
+            background-color: transparent;
+            color: #ff4f00;
+            border: 1px solid #ff4f00;
+            padding: 5px 10px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .comment-section button:hover {
+            background-color: #ff4f00;
+            color: white;
+        }
+        .comments-list {
+            max-height: 100px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .comments-list.show {
+            max-height: 500px;
+        }
+        .comment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .comment-item button {
+            background-color: transparent;
+            border: none;
+            color: #ff4f00;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.1); /* hitam dengan 50% transparansi */
+            color: white;
+            text-align: center;
+            padding: -0,5px;
+            position: center;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer a {
+            color: #ff4f00;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+<header>
+    <h1>Video Aktivitas Anak-Anak</h1>
+    <button class="mode-toggle" onclick="toggleMode()">
+        <i class="fas fa-sun" id="mode-icon"></i> <!-- Ikon matahari untuk mode terang -->
+    </button>
+</header>
+
+<div class="main-container">
+    <!-- Video 1 -->
+    <div class="video-card">
+        <video controls>
+            <source src="video/video2.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <div class="info">
+            <h3>Aktivitas Anak Panti 1</h3>
+            <p>Video ini menunjukkan aktivitas anak-anak di panti asuhan, mereka belajar dan bermain bersama.</p>
+        </div>
+        <!-- Komentar Video 1 -->
+        <div class="comment-section">
+            <textarea id="comment-video-1" rows="4" placeholder="Tulis komentar..."></textarea>
+            <button onclick="submitComment(1)">Kirim Komentar</button>
+            <div id="comments-video-1" class="comments-list"></div>
+            <button id="toggle-comments-1" onclick="toggleComments(1)">Lihat Komentar Selengkapnya</button>
+        </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card">
+        <video controls>
+            <source src="video_aktivitas_2.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <div class="info">
+            <h3>Aktivitas Anak Panti 2</h3>
+            <p>Di sini, anak-anak membuat karya seni sebagai bagian dari kegiatan pembelajaran mereka.</p>
+        </div>
+        <!-- Komentar Video 2 -->
+        <div class="comment-section">
+            <textarea id="comment-video-2" rows="4" placeholder="Tulis komentar..."></textarea>
+            <button onclick="submitComment(2)">Kirim Komentar</button>
+            <div id="comments-video-2" class="comments-list"></div>
+            <button id="toggle-comments-2" onclick="toggleComments(2)">Lihat Komentar Selengkapnya</button>
+        </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card">
+        <video controls>
+            <source src="video_aktivitas_3.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <div class="info">
+            <h3>Aktivitas Anak Panti 3</h3>
+            <p>Video ini menunjukkan anak-anak yang sedang bermain di halaman panti asuhan, saling bekerjasama.</p>
+        </div>
+        <!-- Komentar Video 3 -->
+        <div class="comment-section">
+            <textarea id="comment-video-3" rows="4" placeholder="Tulis komentar..."></textarea>
+            <button onclick="submitComment(3)">Kirim Komentar</button>
+            <div id="comments-video-3" class="comments-list"></div>
+            <button id="toggle-comments-3" onclick="toggleComments(3)">Lihat Komentar Selengkapnya</button>
+        </div>
+    </div>
+</div>
+<div class="main-container">
+    <!-- Video 1 -->
+    <div class="video-card">
+        <video controls>
+            <source src="video_aktivitas_1.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <div class="info">
+            <h3>Aktivitas Anak Panti 1</h3>
+            <p>Video ini menunjukkan aktivitas anak-anak di panti asuhan, mereka belajar dan bermain bersama.</p>
+        </div>
+        <!-- Komentar Video 1 -->
+        <div class="comment-section">
+            <textarea id="comment-video-1" rows="4" placeholder="Tulis komentar..."></textarea>
+            <button onclick="submitComment(1)">Kirim Komentar</button>
+            <div id="comments-video-1" class="comments-list"></div>
+            <button id="toggle-comments-1" onclick="toggleComments(1)">Lihat Komentar Selengkapnya</button>
+        </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card">
+        <video controls>
+            <source src="video_aktivitas_2.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <div class="info">
+            <h3>Aktivitas Anak Panti 2</h3>
+            <p>Di sini, anak-anak membuat karya seni sebagai bagian dari kegiatan pembelajaran mereka.</p>
+        </div>
+        <!-- Komentar Video 2 -->
+        <div class="comment-section">
+            <textarea id="comment-video-2" rows="4" placeholder="Tulis komentar..."></textarea>
+            <button onclick="submitComment(2)">Kirim Komentar</button>
+            <div id="comments-video-2" class="comments-list"></div>
+            <button id="toggle-comments-2" onclick="toggleComments(2)">Lihat Komentar Selengkapnya</button>
+        </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card">
+        <video controls>
+            <source src="video_aktivitas_3.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+        <div class="info">
+            <h3>Aktivitas Anak Panti 3</h3>
+            <p>Video ini menunjukkan anak-anak yang sedang bermain di halaman panti asuhan, saling bekerjasama.</p>
+        </div>
+        <!-- Komentar Video 3 -->
+        <div class="comment-section">
+            <textarea id="comment-video-3" rows="4" placeholder="Tulis komentar..."></textarea>
+            <button onclick="submitComment(3)">Kirim Komentar</button>
+            <div id="comments-video-3" class="comments-list"></div>
+            <button id="toggle-comments-3" onclick="toggleComments(3)">Lihat Komentar Selengkapnya</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2025 Video Aktivitas Panti Asuhan | <a href="#">Kebijakan Privasi</a></p>
+</div>
+
+<script>
+    // Fungsi untuk mengubah mode terang atau gelap
+    function toggleMode() {
+        const body = document.body;
+        const button = document.querySelector('.mode-toggle');
+        const icon = document.getElementById('mode-icon');
+
+        if (body.classList.contains('light-mode')) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    // Fungsi untuk menyimpan dan menampilkan komentar
+    function submitComment(videoId) {
+        const commentBox = document.getElementById(`comment-video-${videoId}`);
+        const commentText = commentBox.value.trim();
+        const commentsContainer = document.getElementById(`comments-video-${videoId}`);
+        const toggleButton = document.getElementById(`toggle-comments-${videoId}`);
+        
+        if (commentText !== "") {
+            let comments = JSON.parse(localStorage.getItem(`comments-video-${videoId}`)) || [];
+            comments.push(commentText);
+            localStorage.setItem(`comments-video-${videoId}`, JSON.stringify(comments));
+            displayComments(videoId);
+            commentBox.value = ""; // Reset textarea
+        } else {
+            alert("Komentar tidak boleh kosong!");
+        }
+    }
+
+    // Fungsi untuk menampilkan komentar dari localStorage
+    function displayComments(videoId) {
+        const commentsContainer = document.getElementById(`comments-video-${videoId}`);
+        const comments = JSON.parse(localStorage.getItem(`comments-video-${videoId}`)) || [];
+
+        commentsContainer.innerHTML = ""; // Clear previous comments
+
+        comments.forEach((comment, index) => {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment-item");
+
+            const commentText = document.createElement("p");
+            commentText.textContent = comment;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Hapus";
+            deleteButton.onclick = () => deleteComment(videoId, index);
+
+            commentElement.appendChild(commentText);
+            commentElement.appendChild(deleteButton);
+            commentsContainer.appendChild(commentElement);
+        });
+    }
+
+    // Fungsi untuk menghapus komentar
+    function deleteComment(videoId, index) {
+        let comments = JSON.parse(localStorage.getItem(`comments-video-${videoId}`)) || [];
+        comments.splice(index, 1); // Hapus komentar pada index tertentu
+        localStorage.setItem(`comments-video-${videoId}`, JSON.stringify(comments));
+        displayComments(videoId); // Update tampilan setelah penghapusan
+    }
+
+    // Fungsi untuk toggle "Lihat Komentar Selengkapnya"
+    function toggleComments(videoId) {
+        const commentsContainer = document.getElementById(`comments-video-${videoId}`);
+        const toggleButton = document.getElementById(`toggle-comments-${videoId}`);
+        
+        commentsContainer.classList.toggle("show");
+
+        if (commentsContainer.classList.contains("show")) {
+            toggleButton.textContent = "Sembunyikan Komentar";
+        } else {
+            toggleButton.textContent = "Lihat Komentar Selengkapnya";
+        }
+    }
+
+    // Menampilkan komentar ketika halaman dimuat
+    window.onload = function() {
+        for (let i = 1; i <= 3; i++) {
+            displayComments(i);
+        }
+    };
+</script>
+
+</body>
+</html>

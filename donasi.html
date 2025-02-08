@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 50px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .donation-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1 1 calc(25% - 40px);
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .donation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .donation-icon {
+            width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .donation-card:hover .donation-icon {
+            transform: scale(1.1);
+        }
+
+        .donation-info {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .kitabisa-button {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(90deg, #00a2e9, #0076d6);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 162, 233, 0.4);
+            border: none;
+            outline: none;
+            margin-top: 10px;
+        }
+
+        .kitabisa-button:hover {
+            background: linear-gradient(90deg, #0076d6, #00a2e9);
+            box-shadow: 0 6px 20px rgba(0, 118, 214, 0.5);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .donation-card {
+                flex: 1 1 calc(50% - 20px);
+                max-width: 100%;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .donation-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2>Dukung Kami dengan Donasi</h2>
+
+        <div class="row">
+            <!-- BRI -->
+            <div class="col-md-3">
+                <div class="donation-card">
+                    <a href="https://dashboard.seabank.co.id/app" target="_blank">
+                        <img src="img/bri.jpg" alt="BRI" class="donation-icon">
+                    </a>
+                    <p class="donation-info">BRI</p>
+                    <p class="donation-info">5328-01-042867-53-4</p>
+                    <p class="donation-info">Fiber Permata Kasih</p>
+                </div>
+            </div>
+
+            <!-- BCA -->
+            <div class="col-md-3">
+                <div class="donation-card">
+                    <a href="https://internetbanking.btn.co.id/retail/login/loginRequest" target="_blank">
+                        <img src="img/bca.jpg" alt="BCA" class="donation-icon">
+                    </a>
+                    <p class="donation-info">BCA</p>
+                    <p class="donation-info">6475197864</p>
+                    <p class="donation-info">WARNIMAN LAIA</p>
+                </div>
+            </div>
+
+            <!-- BNI -->
+            <div class="col-md-3">
+                <div class="donation-card">
+                    <a href="Https://dashboard.dana.id/app" target="_blank">
+                        <img src="img/bni.jpg" alt="BNI" class="donation-icon">
+                    </a>
+                    <p class="donation-info">BNI</p>
+                    <p class="donation-info">1486421609</p>
+                    <p class="donation-info">WARNIMAN LAIA</p>
+                </div>
+            </div>
+
+            <!-- KITA BISA -->
+            <div class="col-md-3">
+                <div class="donation-card">
+                    <a href="https://kitabisa.com/campaign/namacampaignanda" target="_blank">
+                        <img src="img/kitabisa.png" alt="KitaBisa" class="donation-icon">
+                    </a>
+                    <p class="donation-info">KitaBisa</p>
+                    <p class="donation-info">Dukung kami dengan donasi online</p>
+                    <a href="https://kitabisa.com/campaign/berihsentuhantanganmukemerekarezekimumelimpah" class="kitabisa-button" target="_blank">
+                        Donasi Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
