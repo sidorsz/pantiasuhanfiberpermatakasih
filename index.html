@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fiber Permata Kasih</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Custom CSS for Password Modal -->
+    <style>
+        /* Modal background */
+        #passwordModal {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .modal-input {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .modal-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal-button i {
+            font-size: 18px;
+            /* Adjust the icon size */
+        }
+    </style>
+
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Fiber Permata Kasih</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap"
+            rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <style>
+            /* Styling for the chat popup */
+            .chat-popup {
+                position: fixed;
+                top: 50%;
+                right: 20px;
+                width: 270px;
+                height: 380px;
+                background-color: #fff3e0;
+                border-radius: 12px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 9999;
+                transform: translateY(-50%);
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .chat-header {
+                background-color: #ff7043;
+                color: white;
+                padding: 12px;
+                border-radius: 12px 12px 0 0;
+                text-align: center;
+                font-size: 18px;
+                position: relative;
+            }
+
+            .chat-header .status {
+                width: 14px;
+                height: 14px;
+                background-color: #00FF00;
+                border-radius: 50%;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                animation: blink 1s infinite;
+            }
+
+            @keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .chat-body {
+                padding: 15px;
+                height: 230px;
+                overflow-y: auto;
+                background-color: #f9f9f9;
+                border-bottom: 2px solid #eee;
+            }
+
+            .chat-body .message {
+                padding: 8px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                background-color: #f1f1f1;
+                font-size: 14px;
+            }
+
+            .chat-body .message.user {
+                background-color: #DCF8C6;
+                text-align: right;
+            }
+
+            .chat-body .message.bot {
+                background-color: #f1f1f1;
+            }
+
+            .chat-input {
+                padding: 10px;
+                width: 100%;
+                border: none;
+                border-top: 1px solid #ddd;
+                font-size: 14px;
+                border-radius: 0 0 12px 12px;
+                outline: none;
+            }
+
+            .chat-input:focus {
+                outline: none;
+            }
+
+            .chat-message-send {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 5px;
+            }
+
+            .whatsapp-btn {
+                margin-top: 10px;
+                display: inline-block;
+                background-color: #25d366;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 12px;
+                text-align: center;
+                font-size: 14px;
+                cursor: pointer;
+                text-decoration: none;
+                width: 100%;
+            }
+
+            .whatsapp-btn:hover {
+                background-color: #128c7e;
+            }
+
+            .donation-btn {
+                margin-top: 10px;
+                display: inline-block;
+                background-color: #f44336;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 50%;
+                font-size: 18px;
+                text-align: center;
+                cursor: pointer;
+                animation: bubble 2s infinite;
+                transition: all 0.3s ease;
+            }
+
+            .donation-btn:hover {
+                transform: scale(1.1);
+            }
+
+            .donation-btn i {
+                font-size: 22px;
+            }
+
+            @keyframes bubble {
+                0% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.2);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            /* New floating icon styling */
+            .open-chat-btn {
+                position: fixed;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                background: linear-gradient(135deg, #9b59b6, #e74c3c);
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
+                z-index: 9999;
+                transition: all 0.3s ease;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            .open-chat-btn i {
+                color: white;
+                font-size: 28px;
+                transition: transform 0.3s ease;
+            }
+
+            .open-chat-btn:hover {
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 12px 30px rgba(155, 89, 182, 0.5);
+            }
+
+            .open-chat-btn:hover i {
+                transform: rotate(15deg);
+            }
+
+            /* Status indicator on chat button */
+            .status-indicator {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                width: 12px;
+                height: 12px;
+                background: #2ecc71;
+                border-radius: 50%;
+                border: 2px solid white;
+                animation: pulse 1.5s infinite;
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(-50%);
+                }
+
+                50% {
+                    transform: translateY(-55%);
+                }
+
+                100% {
+                    transform: translateY(-50%);
+                }
+            }
+
+            @keyframes pulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+                }
+
+                70% {
+                    box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+                }
+
+                100% {
+                    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+                }
+            }
+
+            /* Optional: Styling for the close button inside chat popup */
+            .close-chat-btn {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                color: rgb(255, 0, 0);
+                border: none;
+                background: none;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            .close-chat-btn:hover {
+                background-color: rgba(255, 22, 1, 0.2);
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Ikon Chat yang mengapung dan dapat dipindahkan (drag & drop) -->
+    <div class="open-chat-btn" id="chatButton" onclick="toggleChatPopup()">
+        <i class="fas fa-comment-alt"></i>
+        <div class="status-indicator"></div>
+    </div>
+
+    <!-- Chat Popup -->
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            Live Chat
+            <span class="status"></span>
+            <button class="close-chat-btn" onclick="closeChatPopup()">X</button>
+        </div>
+        <iframe src="https://www.chatbase.co/chatbot-iframe/5mo4XmZtYlugdlyL64u1V" width="100%"
+            style="height: 100%; min-height: 100px" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        /* Fungsi untuk membuka dan menutup chat popup */
+        function toggleChatPopup() {
+            const chatPopup = document.getElementById('chatPopup');
+            chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+            if (chatPopup.style.display === 'block') {
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        function closeChatPopup() {
+            document.getElementById('chatPopup').style.display = 'none';
+        }
+
+        /* Fungsi mengirim pesan dan simulasi respons bot */
+        document.getElementById('chatInput').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' && !event.shiftKey && this.value.trim() !== '') {
+                event.preventDefault();
+                sendMessage(this.value);
+                this.value = '';
+            }
+        });
+
+        function sendMessage(message) {
+            const chatBody = document.getElementById('chatBody');
+
+            // Pesan pengguna
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.innerText = message;
+            chatBody.appendChild(userMessage);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Simulasi respons bot dengan delay 1.5 detik
+            setTimeout(function () {
+                let botMessage = "Terima kasih! Pesan Anda telah diterima.";
+                let whatsappButton = '';
+                let donationButton = '';
+
+                if (message.toLowerCase().includes("hai") || message.toLowerCase().includes("hallo")) {
+                    botMessage = "Halo juga! Selamat datang di Panti Asuhan Fiber Permata Kasih, ada yang bisa kami bantu?";
+                } else if (message.toLowerCase().includes("berkunjung")) {
+                    botMessage = "Terimakasih banyak untuk Bapak/Ibu yang ingin berkunjung. Silakan hubungi kami via WhatsApp.";
+                    whatsappButton = `<a href="https://api.whatsapp.com/send?phone=+6282164924290" class="whatsapp-btn" target="_blank">Hubungi Kami di WhatsApp</a>`;
+                } else if (message.toLowerCase().includes("donasi")) {
+                    botMessage = "Terima kasih atas niat baik Anda untuk berdonasi. Klik tombol di bawah untuk melanjutkan.";
+                    donationButton = `<button class="donation-btn" onclick="window.location.href='donasi.html'"><i class="fas fa-heart"></i></button>`;
+                }
+
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('message', 'bot');
+                botMessageElement.innerHTML = botMessage + (whatsappButton ? whatsappButton : '') + (donationButton ? donationButton : '');
+                chatBody.appendChild(botMessageElement);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1500);
+        }
+
+        function adjustHeight() {
+            const input = document.getElementById('chatInput');
+            input.style.height = 'auto';
+            input.style.height = input.scrollHeight + 'px';
+        }
+
+        /* Tutup chat popup saat klik di luar area popup */
+        document.addEventListener('click', function (event) {
+            const chatPopup = document.getElementById('chatPopup');
+            const openChatBtn = document.querySelector('.open-chat-btn');
+            if (!chatPopup.contains(event.target) && event.target !== openChatBtn) {
+                chatPopup.style.display = 'none';
+            }
+        });
+
+        /* Fungsi Drag & Drop untuk memindahkan ikon chat */
+        let isDragging = false;
+        let currentX = null;
+        let currentY = null;
+        let initialX = null;
+        let initialY = null;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        const chatButton = document.getElementById('chatButton');
+
+        // Muat posisi tersimpan (jika ada) dari localStorage
+        const savedPosition = localStorage.getItem('chatButtonPosition');
+        if (savedPosition) {
+            const pos = JSON.parse(savedPosition);
+            chatButton.style.right = '';
+            chatButton.style.top = '';
+            chatButton.style.left = pos.x + 'px';
+            chatButton.style.bottom = pos.y + 'px';
+        }
+
+        chatButton.addEventListener('mousedown', dragStart);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
+
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            if (e.target === chatButton || chatButton.contains(e.target)) {
+                isDragging = true;
+            }
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                setTranslate(currentX, currentY, chatButton);
+            }
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.left = xPos + 'px';
+            el.style.bottom = -yPos + 'px';
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+            // Simpan posisi ke localStorage
+            localStorage.setItem('chatButtonPosition', JSON.stringify({
+                x: currentX,
+                y: -currentY
+            }));
+        }
+    </script>
+
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+</body>
+
+<!-- Timer Waktu Kunjungan -->
+<div id="visit-timer" class="timer-box">
+    ⏳ <span id="time-spent">0:00</span>
+</div>
+
+
+
+<!-- CSS untuk Timer -->
+<style>
+    .timer-box {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        color: white;
+        padding: 6px 10px;
+        /* Padding kecil agar tidak terlalu panjang */
+        font-size: 14px;
+        /* Font pas agar mudah dibaca */
+        font-weight: bold;
+        border-radius: 15px;
+        box-shadow: 0px 2px 5px rgba(255, 117, 140, 0.3);
+        display: inline-block;
+        /* Supaya lebar menyesuaikan teks */
+        white-space: nowrap;
+        /* Mencegah teks turun ke bawah */
+    }
+</style>
+
+<!-- JavaScript Timer -->
+<script>
+    let startTime = sessionStorage.getItem("visitStartTime") || new Date().getTime();
+    sessionStorage.setItem("visitStartTime", startTime);
+
+    function updateVisitTimer() {
+        let now = new Date().getTime();
+        let elapsedTime = Math.floor((now - startTime) / 1000);
+        let minutes = Math.floor(elapsedTime / 60);
+        let seconds = elapsedTime % 60;
+        document.getElementById("time-spent").innerText = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
+    setInterval(updateVisitTimer, 1000);
+</script>
+
+<!-- JavaScript Timer -->
+<script>
+    let startTime = sessionStorage.getItem("visitStartTime") || new Date().getTime();
+    sessionStorage.setItem("visitStartTime", startTime);
+
+    function updateVisitTimer() {
+        let now = new Date().getTime();
+        let elapsedTime = Math.floor((now - startTime) / 1000);
+        let minutes = Math.floor(elapsedTime / 60);
+        let seconds = elapsedTime % 60;
+        document.getElementById("time-spent").innerText = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
+    setInterval(updateVisitTimer, 1000);
+</script>
+
+
+<body>
+    <div class="container-xxl bg-white p-0">
+
+        <!-- Spinner Start -->
+
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+            <a href="index.html" class="navbar-brand">
+                <h1 class="m-0 text-primary">
+                    <img src="img/logo.png" alt="Panti Asuhan Logo"
+                        style="height: 80px; width: auto; margin-right: 10px;">
+                    Fiber Permata Kasih
+                </h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="index.html" class="nav-item nav-link active">Beranda</a>
+                    <a href="about.html" class="nav-item nav-link">Tentang</a>
+                    <a href="classes.html" class="nav-item nav-link">Gallery</a>
+                    <a href="team.html" class="nav-item nav-link">Profil Pengurus</a>
+                    <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
+                </div>
+
+                <!-- Tombol DONASI -->
+                <a href="donasi.html" class="btn-donasi-premium">
+                    <img src="img/donasi2.png" alt="Donasi Button" class="donasi-image">
+                </a>
+
+                <!-- CSS Tambahan -->
+                <style>
+                    .btn-donasi-premium {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                        border-radius: none;
+                        position: relative;
+                        overflow: hidden;
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    .donasi-image {
+                        max-height: 90px;
+                        /* Sesuaikan dengan tinggi navbar */
+                        width: auto;
+                        /* Biarkan lebar menyesuaikan proporsi */
+                        border-radius: none;
+                        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+                    }
+
+                    .btn-donasi-premium:hover .donasi-image {
+                        transform: scale(1.1);
+                        /* Sedikit membesar saat hover */
+                        box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.6);
+                        /* Efek glow saat hover */
+                    }
+                </style>
+
+        </nav>
+        <!-- Navbar End -->
+
+
+        <!-- Carousel Start -->
+        <div class="container-fluid p-0 mb-5">
+            <div class="owl-carousel header-carousel position-relative">
+                <div class="owl-carousel-item position-relative">
+                    <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                        style="background: rgba(0, 0, 0, .2);">
+                        <div class="container">
+                            <div class="row justify-content-start">
+                                <div class="col-10 col-lg-8">
+                                    <h1 class="display-2 text-white animated slideInDown mb-4">Panti Asuhan Fiber
+                                        Permata Kasih</h1>
+                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Kami berharap Anda dapat merasakan
+                                        kasih sayang dan kehangatan yang kami berikan kepada anak-anak yang kami rawat.
+                                        .</p>
+                                    <!-- Tombol VIDEO dan DONATUR KAMI -->
+                                    <div class="btn-container">
+                                        <a href="#" class="btn-video">
+                                            <i class="fa fa-play-circle"></i> VIDEO
+                                        </a>
+                                        <a href="#" class="b
+                                        tn-donatur">
+                                            <i class="fa fa-users"></i> DONATUR KAMI
+                                        </a>
+                                    </div>
+
+                                    <!-- CSS Tambahan -->
+                                    <style>
+                                        .btn-container {
+                                            display: flex;
+                                            justify-content: center;
+                                            gap: 20px;
+                                            /* Jarak antar tombol */
+                                            align-items: center;
+                                        }
+
+                                        .btn-video,
+                                        .btn-donatur {
+                                            background: linear-gradient(135deg, #00c6ff, #0072ff);
+                                            color: white;
+                                            border: none;
+                                            padding: 12px 30px;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            text-transform: uppercase;
+                                            border-radius: 50px;
+                                            display: inline-flex;
+                                            align-items: center;
+                                            gap: 12px;
+                                            text-decoration: none;
+                                            transition: all 0.3s ease-in-out;
+                                            position: relative;
+                                            overflow: hidden;
+                                            box-shadow: 0px 4px 10px rgba(0, 114, 255, 0.3);
+                                        }
+
+                                        .btn-video:hover,
+                                        .btn-donatur:hover {
+                                            transform: scale(1.05);
+                                            background: linear-gradient(135deg, #0072ff, #00c6ff);
+                                            box-shadow: 0px 6px 15px rgba(0, 114, 255, 0.4);
+                                        }
+
+                                        .btn-video i,
+                                        .btn-donatur i {
+                                            transition: transform 0.3s ease-in-out;
+                                        }
+
+                                        .btn-video:hover i,
+                                        .btn-donatur:hover i {
+                                            transform: translateX(8px);
+                                        }
+
+                                        /* Animasi masuk */
+                                        .btn-video {
+                                            animation: slideInLeft 0.6s ease-out;
+                                        }
+
+                                        .btn-donatur {
+                                            animation: slideInRight 0.6s ease-out;
+                                        }
+
+                                        @keyframes slideInLeft {
+                                            from {
+                                                opacity: 0;
+                                                transform: translateX(-30px);
+                                            }
+
+                                            to {
+                                                opacity: 1;
+                                                transform: translateX(0);
+                                            }
+                                        }
+
+                                        @keyframes slideInRight {
+                                            from {
+                                                opacity: 0;
+                                                transform: translateX(30px);
+                                            }
+
+                                            to {
+                                                opacity: 1;
+                                                transform: translateX(0);
+                                            }
+                                        }
+                                    </style>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="owl-carousel-item position-relative">
+                    <img class="img-fluid" src="img/carousel-2.jpg" alt="">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                        style="background: rgba(0, 0, 0, .2);">
+                        <div class="container">
+                            <div class="row justify-content-start">
+                                <div class="col-10 col-lg-8">
+                                    <h1 class="display-2 text-white animated slideInDown mb-4">Panti Asuhan Fiber
+                                        Permata Kasih</h1>
+                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Kami adalah sebuah lembaga yang
+                                        berkomitmen untuk memberikan kasih sayang, pendidikan, dan perlindungan kepada
+                                        anak-anak yang membutuhkan. Kami berharap Anda dapat bergabung dengan kami dalam
+                                        misi kami untuk membantu anak-anak yang membutuhkan.
+                                    </p>
+                                    <!-- Tombol VIDEO dan DONATUR KAMI -->
+                                    <div class="btn-container">
+                                        <a href="video.html" class="btn-video">
+                                            <i class="fa fa-play-circle"></i> VIDEO
+                                        </a>
+                                        <a href="#" class="btn-donatur">
+                                            <i class="fa fa-users"></i> DONATUR KAMI
+                                        </a>
+                                    </div>
+
+                                    <!-- CSS Tambahan -->
+                                    <style>
+                                        .btn-container {
+                                            display: flex;
+                                            justify-content: center;
+                                            gap: 20px;
+                                            /* Jarak antar tombol */
+                                            align-items: center;
+                                        }
+
+                                        .btn-video,
+                                        .btn-donatur {
+                                            background: linear-gradient(135deg, #00c6ff, #0072ff);
+                                            color: white;
+                                            border: none;
+                                            padding: 12px 30px;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            text-transform: uppercase;
+                                            border-radius: 50px;
+                                            display: inline-flex;
+                                            align-items: center;
+                                            gap: 12px;
+                                            text-decoration: none;
+                                            transition: all 0.3s ease-in-out;
+                                            position: relative;
+                                            overflow: hidden;
+                                            box-shadow: 0px 4px 10px rgba(0, 114, 255, 0.3);
+                                        }
+
+                                        .btn-video:hover,
+                                        .btn-donatur:hover {
+                                            transform: scale(1.05);
+                                            background: linear-gradient(135deg, #0072ff, #00c6ff);
+                                            box-shadow: 0px 6px 15px rgba(0, 114, 255, 0.4);
+                                        }
+
+                                        .btn-video i,
+                                        .btn-donatur i {
+                                            transition: transform 0.3s ease-in-out;
+                                        }
+
+                                        .btn-video:hover i,
+                                        .btn-donatur:hover i {
+                                            transform: translateX(8px);
+                                        }
+
+                                        /* Animasi masuk */
+                                        .btn-video {
+                                            animation: slideInLeft 0.6s ease-out;
+                                        }
+
+                                        .btn-donatur {
+                                            animation: slideInRight 0.6s ease-out;
+                                        }
+
+                                        @keyframes slideInLeft {
+                                            from {
+                                                opacity: 0;
+                                                transform: translateX(-30px);
+                                            }
+
+                                            to {
+                                                opacity: 1;
+                                                transform: translateX(0);
+                                            }
+                                        }
+
+                                        @keyframes slideInRight {
+                                            from {
+                                                opacity: 0;
+                                                transform: translateX(30px);
+                                            }
+
+                                            to {
+                                                opacity: 1;
+                                                transform: translateX(0);
+                                            }
+                                        }
+                                    </style>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel End -->
+
+        <!-- Sambutan Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <!-- Judul Sambutan -->
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Selamat Datang di Website Kami</h1>
+                    <p>
+                        Mulailah perjalanan Anda dengan menikmati sambutan hangat dari kami. Klik ikon musik di bawah
+                        untuk memutar musik penyambutan yang akan menginspirasi dan menyemangati Anda.
+                    </p>
+                </div>
+                <!-- Ikon Musik di Tengah -->
+                <div class="d-flex justify-content-center">
+                    <div class="sambutan-item text-center">
+                        <!-- Ikon Musik (klik untuk toggle play/pause) -->
+                        <div class="sambutan-icon bg-primary mx-auto mb-3" id="musicIcon">
+                            <!-- Mulai dengan ikon play -->
+                            <i class="fa fa-play text-white music-icon"></i>
+                        </div>
+                        <p id="musicStatus" class="text-white">Klik ikon untuk memutar musik</p>
+                        <!-- Elemen Audio (pastikan file FPK.mp3 berada di path yang sesuai) -->
+                        <audio id="welcomeMusic" src="D:\CPNS\preschool-website-template\video\FPK.mp3"></audio>
+                        <!-- Container gambar animasi boneka -->
+                        <div class="boneka-container mt-4">
+                            <img src="D:\CPNS\preschool-website-template\aploads\Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
+                                alt="Boneka Animasi 2" class="boneka" />
+                            <img src="D:\CPNS\preschool-website-template\aploads\Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
+                                alt="Boneka Animasi 2" class="boneka" />
+                            <img src="D:\CPNS\preschool-website-template\aploads\Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
+                                alt="Boneka Animasi 2" class="boneka" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sambutan End -->
+
+        <!-- CSS Tambahan -->
+        <style>
+            .sambutan-item {
+                text-align: center;
+            }
+
+            .sambutan-icon {
+                width: 80px;
+                /* Ukuran ikon lebih kecil */
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .music-icon {
+                font-size: 2rem;
+                /* Ukuran ikon play/pause */
+                transition: transform 0.3s ease;
+            }
+
+            /* Animasi rotasi untuk ikon musik */
+            .rotate {
+                animation: rotation 2s infinite linear;
+            }
+
+            @keyframes rotation {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* Container gambar boneka */
+            .boneka-container {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .boneka {
+                width: 60px;
+                transition: transform 0.3s ease;
+            }
+
+            /* Animasi goyang untuk gambar boneka */
+            .sway {
+                animation: sway 1s infinite;
+            }
+
+            @keyframes sway {
+                0% {
+                    transform: rotate(-10deg);
+                }
+
+                50% {
+                    transform: rotate(10deg);
+                }
+
+                100% {
+                    transform: rotate(-10deg);
+                }
+            }
+        </style>
+
+        <!-- JavaScript untuk toggle play/pause musik dan animasi gambar boneka -->
+        <script>
+            const musicIcon = document.getElementById('musicIcon');
+            const welcomeMusic = document.getElementById('welcomeMusic');
+            const musicStatus = document.getElementById('musicStatus');
+            const bonekaImages = document.querySelectorAll('.boneka');
+
+            musicIcon.addEventListener('click', function () {
+                const iconElem = musicIcon.querySelector('.music-icon');
+                if (welcomeMusic.paused) {
+                    welcomeMusic.play().then(() => {
+                        iconElem.classList.remove('fa-play');
+                        iconElem.classList.add('fa-pause', 'rotate');
+                        musicStatus.textContent = "Musik Sedang Diputar (Klik untuk Pause)";
+                        // Tambahkan animasi goyang pada setiap gambar boneka
+                        bonekaImages.forEach(img => img.classList.add('sway'));
+                    }).catch(error => {
+                        console.error("Error playing music:", error);
+                    });
+                } else {
+                    welcomeMusic.pause();
+                    iconElem.classList.remove('fa-pause', 'rotate');
+                    iconElem.classList.add('fa-play');
+                    musicStatus.textContent = "Klik ikon untuk memutar musik";
+                    // Hapus animasi goyang dari setiap gambar boneka
+                    bonekaImages.forEach(img => img.classList.remove('sway'));
+                }
+            });
+        </script>
+
+
+        <!-- Gallery Modal -->
+        <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="galleryModalLabel">Galeri Sambutan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Ganti dengan koleksi gambar atau carousel sesuai kebutuhan -->
+                        <img src="img/welcome-gallery.jpg" class="img-fluid rounded" alt="Galeri Sambutan">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Modal -->
+        <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="videoModalLabel">Video Sambutan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Ganti dengan embed video sesuai kebutuhan, misalnya dari YouTube -->
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://youtu.be/Js1pDV05PGI?si=qN8aQzidE8qyr_Ul" title="Video Sambutan"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript untuk tombol musik -->
+        <script>
+            document.getElementById('playMusicBtn').addEventListener('click', function () {
+                var audio = document.getElementById('welcomeMusic');
+                if (audio.paused) {
+                    audio.play();
+                    this.textContent = 'Pause Musik';
+                } else {
+                    audio.pause();
+                    this.textContent = 'Putar Musik';
+                }
+            });
+        </script>
+
+
+
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <h1 class="mb-4 text-primary">Tentang Panti Asuhan Fiber Permata Kasih</h1>
+                        <p class="text-muted">
+                            Panti Asuhan Fiber Permata Kasih didirikan pada tahun <b>2023</b> dengan tujuan memberikan
+                            tempat tinggal, pendidikan, dan kasih sayang bagi anak-anak yang membutuhkan. Saat ini, kami
+                            merawat <b>18 anak</b> yang penuh harapan untuk masa depan yang lebih baik.
+                        </p>
+                        <h4 class="text-primary mt-4">Visi & Misi</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-hand-holding-heart text-primary"></i>
+                                Menyediakan lingkungan yang aman dan penuh kasih.</li>
+                            <li class="list-group-item"><i class="fas fa-book text-primary"></i> Memberikan pendidikan
+                                berkualitas bagi anak-anak.</li>
+                            <li class="list-group-item"><i class="fas fa-heart text-primary"></i> Membantu anak-anak
+                                tumbuh dengan nilai-nilai moral dan sosial yang kuat.</li>
+                        </ul>
+
+                        <h4 class="text-primary mt-4">Kebutuhan Harian</h4>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="bubble-btn"><i class="fas fa-utensils"></i> Makanan Sehat</button>
+                            <button class="bubble-btn"><i class="fas fa-tshirt"></i> Pakaian</button>
+                            <button class="bubble-btn"><i class="fas fa-book-open"></i> Buku & Alat Tulis</button>
+                            <button class="bubble-btn"><i class="fas fa-medkit"></i> Obat-obatan</button>
+                            <button class="bubble-btn"><i class="fas fa-bed"></i> Tempat Tidur</button>
+                        </div>
+
+                        <div class="row g-4 align-items-center mt-4">
+                            <div class="col-sm-6">
+                                <a class="btn btn-primary rounded-pill py-3 px-5 shadow-lg" href="classes.html">Pelajari
+                                    Lebih Lanjut</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle shadow-sm" src="img/team-1.jpg" alt="Ignatius Waruwu"
+                                        style="width: 50px; height: 50px;">
+                                    <div class="ms-3">
+                                        <h6 class="text-primary mb-1">Ignatius Waruwu</h6>
+                                        <small>Pendiri Panti Asuhan Fiber Permata Kasih</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Gambar -->
+                    <div class="col-lg-6 about-img wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="row position-relative">
+                            <div class="col-12 text-center">
+                                <img class="img-fluid w-75 rounded shadow-lg" src="img/about-1.jpg"
+                                    alt="Kegiatan Panti">
+                            </div>
+                            <div class="col-6 text-start" style="margin-top: -120px;">
+                                <img class="img-fluid w-100 rounded shadow-lg" src="img/about-2.jpg"
+                                    alt="Anak-anak di Panti">
+                            </div>
+                            <div class="col-6 text-end" style="margin-top: -120px;">
+                                <img class="img-fluid w-100 rounded shadow-lg" src="img/about-3.jpg"
+                                    alt="Kegiatan Sosial">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+        <!-- CSS Tambahan -->
+        <style>
+            .bubble-btn {
+                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 25px;
+                font-size: 16px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: all 0.3s ease-in-out;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .bubble-btn:hover {
+                transform: scale(1.1);
+                box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .bubble-btn i {
+                font-size: 20px;
+            }
+        </style>
+
+
+        <!-- Call To Action Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded shadow-lg overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
+                            <div class="position-relative h-100">
+                                <img class="position-absolute w-100 h-100 rounded" src="img/call-to-action.jpg"
+                                    style="object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            <!-- Menambahkan text-center agar semua konten di kolom ini terpusat -->
+                            <div class="h-100 d-flex flex-column justify-content-center p-5 text-center">
+                                <h1 class="mb-4 text-primary">Jadilah Donatur Kami</h1>
+                                <p class="mb-4 text-muted">
+                                    Setiap donasi yang Anda berikan akan membantu kami memberikan kasih sayang,
+                                    pendidikan, dan perlindungan kepada anak-anak yang membutuhkan.
+                                    Jadilah bagian dari perubahan yang lebih baik hari ini.
+                                </p>
+                                <!-- Tombol Donasi dengan gambar tambahan, diletakkan di tengah dengan mx-auto -->
+                                <a class="btn-donasi d-flex align-items-center mx-auto" href="donasi.html">
+                                    <img src="img/image.png" alt="Gambar Donasi"
+                                        style="width: 40px; height: 40px; margin-right: 8px;">
+                                    <span>Donasi Sekarang</span>
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call To Action End -->
+
+        <!-- CSS Tambahan -->
+        <style>
+            .btn-donasi {
+                background: linear-gradient(135deg, #ff7eb3, #ff758c);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                /* Ukuran tombol diperkecil */
+                font-size: 16px;
+                /* Ukuran teks diperkecil */
+                font-weight: bold;
+                text-transform: uppercase;
+                border-radius: 50px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                /* Jarak antar elemen di dalam tombol */
+                text-decoration: none;
+                transition: all 0.3s ease-in-out;
+                box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn-donasi:hover {
+                background: linear-gradient(135deg, #ff758c, #ff7eb3);
+                transform: scale(1.05);
+                box-shadow: 0px 6px 15px rgba(255, 117, 140, 0.4);
+            }
+
+            .btn-donasi i {
+                font-size: 20px;
+                /* Ukuran ikon diperkecil */
+                font-weight: bold;
+                /* Menebalkan ikon */
+                animation: pulse 1.5s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+
+                50% {
+                    transform: scale(1.1);
+                    opacity: 0.8;
+                }
+
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        </style>
+
+
+
+        <!-- Gallery Section Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3 name-animation">Gallery Anak-anak</h1>
+                    <p>Galeri ini menampilkan beberapa momen-momen bahagia dan menyenangkan yang dialami oleh anak-anak
+                        di Panti
+                        Asuhan Fiber Permata Kasih.</p>
+                </div>
+                <div class="row g-4" id="gallery-container">
+                    <!-- Loop for displaying first 6 images -->
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-1.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Luis</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Luis"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Luis">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Luis"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Luis"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-2.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Sari</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Sari"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Sari">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Sari"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Sari"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-3.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Selama</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Selama"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Selama">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Selama"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Selama"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-4.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Erwin</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Erwin"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Erwin">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Erwin"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Erwin"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-5.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Yani</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Yani"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Yani">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Yani"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Yani"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-6.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Enu</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Enu"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Enu">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Enu"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Enu"><i class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-7.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Rafa</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Rafa"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Rafa">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Rafa"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Rafa"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-8.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Risna</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Risna"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Risna">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Risna"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Risna"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-9.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Jeven</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Jeven"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Jeven">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Jeven"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Jeven"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-10.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Dirat</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Dirat"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Dirat">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Dirat"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Dirat"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes10.0.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Fitri</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Fitri"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Fitri">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Fitri"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Fitri"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-12.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Rafi</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Rafi"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Rafi">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Rafi"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Rafi"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-14.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Fesda</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Fesda"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Fesda">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Fesda"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Fesda"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/classes-15.jpg" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Fiani</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Fiani"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Fiani">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Fiani"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Fiani"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/image (12).webp" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Aisha</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Aisha"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Aisha">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Aisha"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Aisha"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="img/image (8).webp" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Toven</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Toven"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Toven">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Toven"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Toven"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 gallery-item visible-item wow fadeInUp"
+                        data-wow-delay="0.1s">
+                        <div class="card image-container">
+                            <img class="card-img-top img-fluid" src="#" alt="">
+                            <div class="card-body text-center">
+                                <p class="image-text mb-2">Melvin</p>
+                                <div class="actions d-flex justify-content-center gap-3">
+                                    <button class="like-btn" data-image="Melvin"><i class="fas fa-heart"></i> <span
+                                            class="like-count" id="like-Melvin">0</span></button>
+                                    <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                                        data-image="Toven"><i class="fas fa-comment"></i></button>
+                                    <button class="share-btn" data-image="Melvin"><i
+                                            class="fas fa-share-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repeat for other items -->
+                </div>
+                <div class="text-center mt-4">
+                    <button id="loadMore" class="btn btn-primary rounded-pill px-4 py-2">
+                        <i class="fas fa-chevron-down"></i> Tampilkan Semua
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery Section End -->
+
+        <!-- Modal for Comments -->
+        <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="commentModalLabel">Tambah Komentar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" id="commentInput" placeholder="Tulis komentar...">
+                        <button class="btn btn-primary mt-3" id="addCommentBtn">Kirim</button>
+                        <ul class="list-unstyled mt-3" id="commentList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Initialize Likes from localStorage
+            document.querySelectorAll('.like-btn').forEach(button => {
+                const imageName = button.getAttribute('data-image');
+                const likeCountElement = document.getElementById(`like-${imageName}`);
+                let likes = parseInt(localStorage.getItem(`likes-${imageName}`)) || 0;
+                likeCountElement.textContent = likes;
+
+                button.addEventListener('click', () => {
+                    likes++;
+                    likeCountElement.textContent = likes;
+                    localStorage.setItem(`likes-${imageName}`, likes);
+
+                    // Play click sound
+                    const clickSound = new Audio('aploads/Facebook Like - Sound Effect  ProSounds.mp3');
+                    clickSound.play();
+                });
+            });
+
+            // Comment Modal Functionality
+            const commentModal = document.getElementById('commentModal');
+            const commentInput = document.getElementById('commentInput');
+            const addCommentBtn = document.getElementById('addCommentBtn');
+            const commentList = document.getElementById('commentList');
+            let currentImage = '';
+
+            document.querySelectorAll('.comment-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    currentImage = button.getAttribute('data-image');
+                    commentList.innerHTML = '';
+                    const comments = JSON.parse(localStorage.getItem(`comments-${currentImage}`)) || [];
+                    comments.forEach(comment => {
+                        const li = document.createElement('li');
+                        li.textContent = comment;
+                        commentList.appendChild(li);
+                    });
+                });
+            });
+
+            addCommentBtn.addEventListener('click', () => {
+                const commentText = commentInput.value.trim();
+                if (commentText) {
+                    const comments = JSON.parse(localStorage.getItem(`comments-${currentImage}`)) || [];
+                    comments.push(commentText);
+                    localStorage.setItem(`comments-${currentImage}`, JSON.stringify(comments));
+                    const li = document.createElement('li');
+                    li.textContent = commentText;
+                    commentList.appendChild(li);
+                    commentInput.value = '';
+                }
+            });
+
+            // Share Button Functionality
+            document.querySelectorAll('.share-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const imageName = button.getAttribute('data-image');
+                    if (navigator.share) {
+                        navigator.share({
+                            title: `Foto ${imageName}`,
+                            text: `Lihat foto ini dari galeri kami!`,
+                            url: window.location.href
+                        }).then(() => console.log('Berhasil dishare!'))
+                            .catch((error) => console.log('Gagal dishare:', error));
+                    } else {
+                        alert('Fitur share tidak didukung di browser Anda.');
+                    }
+                });
+            });
+        </script>
+
+        <style>
+            /* Card Styling */
+            .card {
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                border-radius: 15px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .card:hover {
+                transform: scale(1.02);
+            }
+
+            .card-img-top {
+                width: 100%;
+                height: 300px;
+                /* Fixed height for uniformity */
+                object-fit: contain;
+                /* Ensure the entire image is visible */
+                border-radius: 15px 15px 0 0;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .card-img-top:hover {
+                transform: scale(1.05);
+            }
+
+            /* Image Text */
+            .image-text {
+                font-family: 'Lobster Two', cursive;
+                font-size: 1.2rem;
+                color: #ff4081;
+                margin-bottom: 10px;
+            }
+
+            /* Actions Buttons */
+            .actions button {
+                background: rgba(255, 255, 255, 0.8);
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .actions button:hover {
+                transform: scale(1.1);
+            }
+
+            .like-count {
+                font-size: 14px;
+                color: #ff4081;
+            }
+
+            .like-btn i {
+                color: red;
+                /* Change heart icon color to red */
+            }
+        </style>
+
+
+        <!-- Appointment Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded shadow-lg overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="h-100 d-flex flex-column justify-content-center p-5">
+                                <h1 class="mb-4 text-primary">Jadwalkan Kunjungan Anda</h1>
+                                <form id="appointmentForm">
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0 shadow-sm" id="gname"
+                                                    placeholder="Nama Lengkap">
+                                                <label for="gname">Nama Lengkap</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="email" class="form-control border-0 shadow-sm" id="gmail"
+                                                    placeholder="Alamat Email">
+                                                <label for="gmail">Alamat Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0 shadow-sm" id="cname"
+                                                    placeholder="Nama Panggil">
+                                                <label for="cname">Nama Panggil</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0 shadow-sm" id="cage"
+                                                    placeholder="No Telepon">
+                                                <label for="cage">No Telepon</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <textarea class="form-control border-0 shadow-sm" placeholder="Pesan"
+                                                    id="message" style="height: 100px"></textarea>
+                                                <label for="message">Pesan</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button
+                                                class="btn btn-primary d-inline-flex align-items-center py-3 px-4 rounded-pill shadow-lg btn-send"
+                                                type="button" onclick="sendToWhatsApp()">Kirim <i
+                                                    class="fa fa-paper-plane ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                            <div class="position-relative h-100">
+                                <img class="position-absolute w-100 h-100 rounded" src="img/appointment.jpg"
+                                    style="object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Appointment End -->
+
+        <script>
+            function sendToWhatsApp() {
+                var name = document.getElementById("gname").value;
+                var email = document.getElementById("gmail").value;
+                var nickname = document.getElementById("cname").value;
+                var phone = document.getElementById("cage").value;
+                var message = document.getElementById("message").value;
+
+                var phoneNumber = "+6282177815570"; // Ganti dengan nomor WhatsApp Anda (gunakan format internasional tanpa "+")
+
+                var whatsappMessage = "Halo, saya ingin menjadwalkan kunjungan:\n\n" +
+                    "Nama Lengkap: " + name + "\n" +
+                    "Email: " + email + "\n" +
+                    "Nama Panggil: " + nickname + "\n" +
+                    "No Telepon: " + phone + "\n" +
+                    "Pesan: " + message;
+
+                var encodedMessage = encodeURIComponent(whatsappMessage);
+                var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+
+                window.open(whatsappURL, "_blank");
+            }
+        </script>
+
+        <!-- CSS Tambahan -->
+        <style>
+            .form-control {
+                border-radius: 10px;
+                transition: all 0.3s ease;
+            }
+
+            .form-floating input:focus,
+            .form-floating textarea:focus {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-color: #007bff;
+                outline: none;
+            }
+
+            .btn-send {
+                background-color: #d14f24;
+                color: white;
+                font-size: 16px;
+                font-weight: 500;
+                border-radius: 50px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                padding: 12px 20px;
+            }
+
+            .btn-send:hover {
+                background-color: #b34200;
+                transform: scale(1.05);
+                box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-send i {
+                font-size: 20px;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-send:hover i {
+                transform: translateX(6px);
+            }
+
+            .shadow-lg {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+
+
+        <!-- Appointment End -->
+
+
+        <!-- Team Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Profil Pengurus</h1>
+                    <p>Tim pengurus kami terdiri dari orang-orang yang peduli dan ingin membantu anak-anak yang
+                        membutuhkan.</p>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <!-- Anggota Tim 1 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.1s">
+                        <div class="team-item">
+                            <img class="img-fluid rounded-circle w-75 mb-3" src="img/-1.jpg" alt="Ignatius Waruwu">
+                            <h4 class="mb-1">Ignatius Waruwu</h4>
+                            <p class="text-muted">Pendiri Fiber PermataKasih</p>
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-square btn-primary mx-1"
+                                    href="https://www.facebook.com/praktiswaruwu.praktiswaruwu"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anggota Tim 2 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.3s">
+                        <div class="team-item">
+                            <img class="img-fluid rounded-circle w-75 mb-3" src="img/-2.jpg" alt="Warniman Laia">
+                            <h4 class="mb-1">Warniman Laia</h4>
+                            <p class="text-muted">Bendahara</p>
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-square btn-primary mx-1"
+                                    href="https://www.facebook.com/people/Henrikus-P-S-Waruwu/pfbid02pFUbZyBFcfnCEneqshKpQ3Gk9ZQASfftoy4P9z2C76eo7FKDxV61Dqdd66Ni3pxtl/"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anggota Tim 3 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.5s">
+                        <div class="team-item">
+                            <img class="img-fluid rounded-circle w-75 mb-3" src="#" alt="#">
+                            <h4 class="mb-1">#</h4>
+                            <p class="text-muted">Konseling</p>
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-square btn-primary mx-1"
+                                    href="https://www.facebook.com/King.Sidorus?rdid=2q1S2IZtTay98LuT&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15yQHRmMQP%2F#"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+
+        <style>
+            .team-item img {
+                transition: transform 0.3s ease;
+            }
+
+            .team-item img:hover {
+                transform: scale(1.05);
+            }
+
+            .btn-square {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+
+
+
+        <!-- Testimonial Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3"
+                        style="font-family:lobster two, cursive 'Playfair Display', serif; font-weight: 700; color: #ff758c;">
+                        💖 Suara Donatur Kami!</h1>
+                    <p style="font-size: 18px; color: #555;">Kami ingin membagikan pengalaman dan cerita dari para
+                        donatur kami yang telah membantu mewujudkan harapan anak-anak.</p>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+                    <!-- Testimonial Item -->
+                    <div class="testimonial-item rounded p-5">
+                        <p class="fs-5" style="font-style: italic; color: #333;">"Saya merasa sangat bangga dapat
+                            menjadi bagian dari misi Panti Asuhan Fiber Permata Kasih. Mereka melakukan pekerjaan yang
+                            luar biasa dalam membantu anak-anak yang membutuhkan."</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" src="img/testimonial-1.jpg"
+                                style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                            <div class="ps-3">
+                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Ibu Sry</h4>
+                                <span style="color: #777;">Ibu Rumah Tangga</span>
+                            </div>
+                            <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                style="color: rgba(255, 117, 140, 0.8);"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Item -->
+                    <div class="testimonial-item rounded p-5">
+                        <p class="fs-5" style="font-style: italic; color: #333;">"Saya sangat terkesan dengan
+                            transparansi dan akuntabilitas Panti Asuhan Fiber Permata Kasih. Mereka benar-benar
+                            menggunakan donasi saya untuk anak-anak yang membutuhkan."</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" src="img/testimonial-2.jpg"
+                                style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                            <div class="ps-3">
+                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Bapak Rudi</h4>
+                                <span style="color: #777;">Pengusaha</span>
+                            </div>
+                            <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                style="color: rgba(255, 117, 140, 0.8);"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Item -->
+                    <div class="testimonial-item rounded p-5">
+                        <p class="fs-5" style="font-style: italic; color: #333;">"Membantu Panti Asuhan Fiber Permata
+                            Kasih adalah cara saya untuk memberikan kembali kepada masyarakat. Saya merasa sangat
+                            bahagia dapat menjadi bagian dari komunitas yang peduli dengan anak-anak yang membutuhkan."
+                        </p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" src="img/testimonial-3.jpg"
+                                style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                            <div class="ps-3">
+                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Dewi</h4>
+                                <span style="color: #777;">Dokter</span>
+                            </div>
+                            <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                style="color: rgba(255, 117, 140, 0.8);"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+        <!-- CSS Tambahan -->
+        <style>
+            .testimonial-item {
+                background: linear-gradient(135deg, #fff, #ffe4e9);
+                border-radius: 15px;
+                box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.2);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .testimonial-item:hover {
+                transform: scale(1.02);
+                box-shadow: 0px 6px 20px rgba(255, 117, 140, 0.4);
+            }
+        </style>
+
+        <!-- Testimonial and Comment Section Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3" style="font-family:lobster two, cursive; font-weight: 700; color: #ff758c;">
+                        💖 Testimonial & Komentar</h1>
+                    <p style="font-size: 18px; color: #555;">Bagikan pengalaman dan dukungan Anda untuk Panti Asuhan
+                        Fiber Permata Kasih</p>
+                </div>
+
+                <!-- Comment Form -->
+                <div class="comment-form-container mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <form id="commentForm" class="p-4 rounded shadow-sm bg-white">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="nameInput" placeholder="Nama Anda"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="commentInput" rows="3"
+                                        placeholder="Tulis komentar Anda di sini..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary rounded-pill">Kirim Komentar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments Display -->
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s" id="commentsList">
+                    <!-- Comments will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Single Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyBIdtCc_1Pefx6EQjzM2VQWfqx0UtufaIU",
+                authDomain: "asuhan-66339.firebaseapp.com",
+                databaseURL: "https://asuhan-66339-default-rtdb.firebaseio.com",
+                projectId: "asuhan-66339",
+                storageBucket: "asuhan-66339.firebaseapp.com",
+                messagingSenderId: "366179538343",
+                appId: "1:366179538343:web:25dd1cf18a70e235905282",
+                measurementId: "G-J7FNHDD1EJ"
+            };
+
+            // Initialize Firebase once
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+
+            const database = firebase.database();
+            const commentsRef = database.ref('comments');
+
+            // Submit comment
+            document.getElementById('commentForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('nameInput').value;
+                const comment = document.getElementById('commentInput').value;
+
+                if (name && comment) {
+                    commentsRef.push({
+                        name: name,
+                        comment: comment,
+                        timestamp: Date.now(),
+                        likes: 0
+                    }).then(() => {
+                        document.getElementById('commentForm').reset();
+                        // Scroll to comments
+                        document.getElementById('commentsList').scrollIntoView({ behavior: 'smooth' });
+                    }).catch((error) => {
+                        console.error('Error:', error);
+                        alert('Gagal mengirim komentar. Silakan coba lagi.');
+                    });
+                }
+            });
+
+            // Load and display comments
+            commentsRef.on('value', (snapshot) => {
+                const comments = snapshot.val();
+                const commentsContainer = document.getElementById('commentsList');
+                commentsContainer.innerHTML = '';
+
+                if (comments) {
+                    Object.keys(comments).reverse().forEach((id) => {
+                        const comment = comments[id];
+                        const div = document.createElement('div');
+                        div.className = 'testimonial-item rounded p-5';
+                        div.innerHTML = `
+                        <p class="fs-5" style="font-style: italic; color: #333;">"${comment.comment}"</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" 
+                                 src="img/user-default.jpg" 
+                                 style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                            <div class="ps-3">
+                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">${comment.name}</h4>
+                                <span style="color: #777;">${new Date(comment.timestamp).toLocaleDateString()}</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="like-button ${comment.liked ? 'liked' : ''}" onclick="likeComment('${id}')">
+                                    <i class="fas fa-heart"></i>
+                                    <span class="like-count">${comment.likes || 0}</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                        commentsContainer.appendChild(div);
+                    });
+
+                    // Reinitialize owl carousel
+                    $('.testimonial-carousel').owlCarousel({
+                        loop: true,
+                        margin: 10,
+                        nav: true,
+                        responsive: {
+                            0: { items: 1 },
+                            768: { items: 2 }
+                        }
+                    });
+                }
+            });
+
+            // Like functionality
+            window.likeComment = function (commentId) {
+                const commentRef = commentsRef.child(commentId);
+                commentRef.once('value').then((snapshot) => {
+                    const comment = snapshot.val();
+                    const currentLikes = comment.likes || 0;
+                    commentRef.update({
+                        likes: currentLikes + 1
+                    });
+                });
+            }
+        </script>
+
+
+
+        <!-- Footer Start -->
+        <footer class="footer-section"
+            style="background: linear-gradient(135deg, #FF6F61 0%, #FFA726 100%); font-family: 'Poppins', sans-serif; color: #fff;">
+            <div class="container py-5">
+                <div class="row g-5">
+
+                    <!-- Contact Section -->
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="text-white mb-4">Hubungi Kami</h3>
+                        <p class="mb-2 d-flex align-items-center"><i
+                                class="fa fa-map-marker-alt me-3 text-warning"></i>Jl.
+                            Bunga Ester VIII No.9, Padang Bulan Selayang II, Kec. Medan Selayang, Kota Medan, Sumatera
+                            Utara
+                            20131</p>
+                        <p class="mb-2 d-flex align-items-center"><i class="fa fa-phone-alt me-3 text-warning"></i>+62
+                            821-7781-5570</p>
+                        <p class="mb-2 d-flex align-items-center"><i
+                                class="fa fa-envelope me-3 text-warning"></i>fiberpermatakasih@gmail.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm" href="#"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm" href="#"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm" href="#"><i
+                                    class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm"
+                                href="https://wa.me/6282177815570"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Map Section -->
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="position-relative h-100">
+                            <iframe class="position-relative rounded w-100 h-100 shadow"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.811265695526!2d98.650238!3d3.589416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131b2c0b4e5b3%3A0x7f7c8b5b8b8b8b8b!2sJl.%20Bunga%20Ester%20VIII%20No.9%2C%20Padang%20Bulan%20Selayang%20II%2C%20Kec.%20Medan%20Selayang%2C%20Kota%20Medan%2C%20Sumatera%20Utara%2020131!5e0!3m2!1sen!2sid!4v1697885400000!5m2!1sen!2sid"
+                                frameborder="0" style="min-height: 200px; border:0;" allowfullscreen=""
+                                aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Section -->
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="text-white mb-4">Berita Terkini</h3>
+                        <p>Kami sangat bangga dengan prestasi anak-anak kami. Mereka telah menunjukkan bahwa mereka
+                            memiliki
+                            potensi dan bakat yang luar biasa," kata Ibu Sri, Kepala Panti Asuhan Fiber Permata Kasih.
+                        </p>
+                        <div class="position-relative mx-auto" style="max-width: 400px;">
+                            <form id="emailForm">
+                                <input class="form-control bg-transparent text-white w-100 py-3 ps-4 pe-5 shadow-sm"
+                                    type="email" id="email" name="email" placeholder="Your email" required>
+                                <button type="submit"
+                                    class="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2 shadow-sm">Kirim</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright Section -->
+            <div class="container-fluid bg-dark text-white py-4">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center text-md-start">
+                            &copy; <a class="text-warning border-bottom" href="#">FiberPermataKasih</a>, All Rights
+                            Reserved.
+                            Designed By <a class="text-warning border-bottom" href="#">Permata Kasih</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="#" class="text-white me-3">Beranda</a>
+                                <a href="#" class="text-white me-3">Cookies</a>
+                                <a href="#" class="text-white me-3">Bantuan</a>
+                                <a href="#" class="text-white">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+        <!-- CSS Animations -->
+        <style>
+            /* Hover Effects */
+            .footer-section a:hover {
+                color: #FFD700 !important;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .footer-section .btn-social:hover {
+                background-color: #FFD700 !important;
+                color: #000 !important;
+                transform: scale(1.1);
+                transition: all 0.3s ease-in-out;
+            }
+
+            /* Shadow Effects */
+            .shadow-sm {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+            }
+
+            /* Smooth Transitions */
+            .footer-section input:focus,
+            .footer-section button:focus {
+                outline: none;
+                box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+                border-color: #FFD700;
+                transition: all 0.3s ease-in-out;
+            }
+
+            /* Gradient for Buttons */
+            .footer-section button {
+                background: linear-gradient(135deg, #FF6F61 0%, #FFA726 100%);
+                border: none;
+                color: #fff;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .footer-section button:hover {
+                background: linear-gradient(135deg, #FFA726 0%, #FF6F61 100%);
+                transform: scale(1.05);
+            }
+        </style>
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+        <script>
+            // Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyBIdtCc_1Pefx6EQjzM2VQWfqx0UtufaIU",
+                authDomain: "asuhan-66339.firebaseapp.com",
+                databaseURL: "https://asuhan-66339-default-rtdb.firebaseio.com/",
+                projectId: "asuhan-66339",
+                storageBucket: "asuhan-66339.firebaseapp.com",
+                messagingSenderId: "366179538343",
+                appId: "1:366179538343:web:25dd1cf18a70e235905282",
+                measurementId: "G-J7FNHDD1EJ"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Get database reference
+            const database = firebase.database();
+            const commentsRef = database.ref('comments');
+
+            // Submit comment
+            document.getElementById('commentForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('nameInput').value;
+                const comment = document.getElementById('commentInput').value;
+
+                if (name && comment) {
+                    const newComment = {
+                        name: name,
+                        comment: comment,
+                        timestamp: Date.now(),
+                        likes: 0
+                    };
+
+                    // Push to Firebase
+                    commentsRef.push(newComment)
+                        .then(() => {
+                            console.log('Comment saved successfully');
+                            document.getElementById('commentForm').reset();
+                        })
+                        .catch((error) => {
+                            console.error('Error saving comment:', error);
+                            alert('Error saving comment. Please try again.');
+                        });
+                }
+            });
+
+            // Load and display comments
+            commentsRef.on('value', (snapshot) => {
+                const comments = snapshot.val();
+                const commentsContainer = document.getElementById('commentsList');
+                commentsContainer.innerHTML = '';
+
+                if (comments) {
+                    Object.keys(comments).reverse().forEach((id) => {
+                        const comment = comments[id];
+                        const div = document.createElement('div');
+                        div.className = 'col-lg-8';
+                        div.innerHTML = `
+                <div class="comment-card card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">${comment.name}</h5>
+                        <p class="card-text">${comment.comment}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="like-button ${comment.liked ? 'liked' : ''}" onclick="likeComment('${id}')">
+                                <i class="fas fa-heart"></i>
+                                <span class="like-count">${comment.likes || 0}</span>
+                            </button>
+                            <small class="text-muted">${new Date(comment.timestamp).toLocaleString()}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+                        commentsContainer.appendChild(div);
+                    });
+                }
+            });
+
+            // Like functionality
+            function likeComment(commentId) {
+                const commentRef = commentsRef.child(commentId);
+                commentRef.once('value').then((snapshot) => {
+                    const comment = snapshot.val();
+                    const currentLikes = comment.likes || 0;
+                    commentRef.update({
+                        likes: currentLikes + 1
+                    });
+                });
+            }
+        </script>
+</body>
+
+</html>
