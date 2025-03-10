@@ -98,51 +98,7 @@
     }
 </style>
 
-<!-- Password Protection Script -->
-<script>
-    window.onload = function() {
-        // Cek jika password sudah dimasukkan sebelumnya
-        const isPasswordEntered = localStorage.getItem('isPasswordEntered');
 
-        // Jika password sudah dimasukkan, tidak tampilkan modal lagi
-        if (isPasswordEntered) {
-            return;
-        }
-
-        // Create the modal HTML structure
-        var modal = document.createElement('div');
-        modal.id = 'passwordModal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Masukkan Password</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Untuk mengakses situs ini, masukkan password yang benar:</p>
-                    <p>Permata Kasih</p>
-                    <input type="password" id="passwordInput" class="modal-input" placeholder="Masukkan Password" />
-                    <button id="submitPassword" class="modal-button"><i class="fa fa-paper-plane"></i> Masukkan</button>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-
-        // Add event listener for submit button
-        document.getElementById('submitPassword').onclick = function() {
-            var enteredPassword = document.getElementById('passwordInput').value;
-
-            // Cek apakah password benar
-            if (enteredPassword === 'Permata Kasih') {
-                modal.style.display = 'none'; // Close the modal if the password is correct
-                localStorage.setItem('isPasswordEntered', 'true'); // Menyimpan status sudah memasukkan password
-                alert('Akses diterima! Anda dapat mengakses situs tanpa terkunci lagi.');
-            } else {
-                alert('Password salah! Akses ditolak.');
-                window.location.href = "https://www.google.com"; // Redirect if password is incorrect
-            }
-        };
-    };
-</script>
 
 </head>
 
@@ -296,11 +252,11 @@
             <!-- New Column for Map -->
             <!-- New Column for Map -->
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 200px;">
-                <div class="position-relative h-200">
-                    <iframe class="position-relative rounded w-100 h-100"
-                    src="https://www.bing.com/search?q=Jl.+Bunga+Ester+VIII+No.9%2C+Padang+Bulan+Selayang+II%2C+Kec.+Medan+Selayang%2C+Kota+Medan%2C+Sumatera+Utara+20131&cvid=bd5612546b294c0c9792ef3101857b21&gs_lcrp=EgRlZGdlKgYIABBFGDsyBggAEEUYO9IBBzc2NGowajSoAgiwAgE&FORM=ANAB01&PC=U531"
-                    frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-                    tabindex="0"></iframe>
+                <div class="position-relative h-100">
+                    <iframe class="position-relative rounded w-100 h-100 shadow"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.811265695526!2d98.650238!3d3.589416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131b2c0b4e5b3%3A0x7f7c8b5b8b8b8b8b!2sJl.%20Bunga%20Ester%20VIII%20No.9%2C%20Padang%20Bulan%20Selayang%20II%2C%20Kec.%20Medan%20Selayang%2C%20Kota%20Medan%2C%20Sumatera%20Utara%2020131!5e0!3m2!1sen!2sid!4v1697885400000!5m2!1sen!2sid"
+                        frameborder="0" style="min-height: 300px; border: 1px;;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
                 </div>
 
             </div>
