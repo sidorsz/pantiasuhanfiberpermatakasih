@@ -14,6 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap"
         rel="stylesheet">
@@ -22,12 +23,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -131,8 +135,8 @@
                 position: fixed;
                 top: 50%;
                 right: 20px;
-                width: 270px;
-                height: 380px;
+                width: 500px;
+                height: 500px;
                 background-color: #fff3e0;
                 border-radius: 12px;
                 box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
@@ -371,7 +375,284 @@
         </style>
     </head>
 
+
+    <!-- Start of LiveChat (www.livechat.com) code -->
+
+    <script>
+        window.__lc = window.__lc || {};
+        window.__lc.license = 19074571;
+        window.__lc.integration_name = "manual_channels";
+        window.__lc.product_name = "livechat";
+        ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
+    </script>
+    <noscript><a href="https://www.livechat.com/chat-with/19074571/" rel="nofollow">Chat with us</a>, powered by <a
+            href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+    <!-- End of LiveChat code -->
+
+
+
 <body>
+    <div id="ratingPopup" class="popup">
+    <div class="popup-content">
+        <h2>Nilai Pengalaman Anda 😘</h2>
+        <p class="subtitle">Kami ingin mendengar masukan Anda!</p>
+        <div id="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p id="selectedRating">Your Rating: <strong>0</strong> / 5</p>
+        <button id="submitRating" class="btn-premium">
+            <i class="fas fa-paper-plane"></i> <!-- Font Awesome Send Icon -->
+        </button>
+        <button id="closePopup" class="btn-close">Close</button>
+        <button id="voiceRating" class="btn-voice">
+            <i class="fas fa-microphone"></i> <!-- Font Awesome Microphone Icon -->
+        </button>
+        <audio id="clickSound" src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
+        <div id="thankYou" class="thank-you hidden">Thank You! 🎉 +10 Points</div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        const popup = document.getElementById("ratingPopup");
+        const stars = document.querySelectorAll(".star");
+        const selectedRating = document.querySelector("#selectedRating strong");
+        const submitBtn = document.getElementById("submitRating");
+        const voiceRating = document.getElementById("voiceRating");
+        const clickSound = document.getElementById("clickSound");
+        const thankYou = document.getElementById("thankYou");
+
+        // Cek apakah rating sudah pernah diberikan sebelumnya
+        if (localStorage.getItem("hasRated") === "true") {
+            popup.style.display = "none"; // Jangan tampilkan popup
+            return; // Hentikan eksekusi lebih lanjut
+        }
+
+        // Tampilkan popup setelah 5 detik
+        setTimeout(() => {
+            popup.style.display = "flex";
+            setTimeout(() => popup.classList.add("show"), 10);
+        }, 5000);
+
+        // Tutup popup dengan animasi
+        document.getElementById("closePopup").addEventListener("click", () => {
+            popup.classList.remove("show");
+            setTimeout(() => popup.style.display = "none", 300);
+        });
+
+        // Submit rating dan simpan status
+        submitBtn.addEventListener("click", () => {
+            const rating = selectedRating.textContent;
+            if (rating > 0) { // Pastikan rating sudah dipilih
+                localStorage.setItem("hasRated", "true"); // Tandai bahwa rating sudah diberikan
+                thankYou.classList.remove("hidden");
+                setTimeout(() => thankYou.classList.add("hidden"), 2000);
+                popup.classList.remove("show");
+                setTimeout(() => popup.style.display = "none", 300);
+            } else {
+                alert("Please select a rating before submitting.");
+            }
+        });
+
+        // Interaktivitas bintang
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                const value = this.getAttribute("data-value");
+                stars.forEach(s => s.classList.remove("selected"));
+                for (let i = 0; i < value; i++) {
+                    stars[i].classList.add("selected");
+                }
+                selectedRating.textContent = value;
+
+                // Play sound
+                clickSound.play();
+
+                // Vibrate (jika didukung)
+                if ("vibrate" in navigator) {
+                    navigator.vibrate(50); // Getar selama 50ms
+                }
+            });
+
+            star.addEventListener("mouseover", function () {
+                const value = this.getAttribute("data-value");
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add("hover");
+                    } else {
+                        s.classList.remove("hover");
+                    }
+                });
+            });
+
+            star.addEventListener("mouseout", function () {
+                stars.forEach(s => s.classList.remove("hover"));
+            });
+        });
+
+        // Voice Rating
+        voiceRating.addEventListener("click", () => {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "id-ID";
+            recognition.onresult = (event) => {
+                const rating = parseInt(event.results[0][0].transcript);
+                if (rating >= 1 && rating <= 5) {
+                    stars.forEach(s => s.classList.remove("selected"));
+                    for (let i = 0; i < rating; i++) {
+                        stars[i].classList.add("selected");
+                    }
+                    selectedRating.textContent = rating;
+                }
+            };
+            recognition.start();
+        });
+    };
+</script>
+
+<style>
+    .thank-you {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #27ae60;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 18px;
+        transition: opacity 0.5s ease;
+    }
+
+    .thank-you.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .btn-voice {
+        border: none;
+        color: #e74c3c;
+        background: transparent;
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .btn-voice:hover {
+        color: #c0392b;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .popup.show {
+        opacity: 1;
+    }
+
+    .popup-content {
+        background: linear-gradient(135deg, #ffffff, #f5f7fa);
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .popup.show .popup-content {
+        transform: scale(1);
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-size: 24px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+    }
+
+    .star {
+        font-size: 40px;
+        cursor: pointer;
+        color: #dfe6e9;
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .star.selected {
+        color: #f1c40f;
+    }
+
+    .star.hover {
+        transform: scale(1.2);
+        color: #f39c12;
+    }
+
+    #stars {
+        margin: 20px 0;
+    }
+
+    #selectedRating {
+        font-size: 18px;
+        color: #34495e;
+        margin-bottom: 25px;
+    }
+
+    .btn-premium {
+        background: #2980b9;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-premium:hover {
+        background: #3498db;
+        transform: translateY(-2px);
+    }
+
+    .btn-close {
+        background: transparent;
+        color: #7f8c8d;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .btn-close:hover {
+        color: #e74c3c;
+    }
+</style>
+
+
+
     <!-- Ikon Chat yang mengapung dan dapat dipindahkan (drag & drop) -->
     <div class="open-chat-btn" id="chatButton" onclick="toggleChatPopup()">
         <i class="fas fa-comment-alt"></i>
@@ -383,10 +664,10 @@
         <div class="chat-header">
             Live Chat
             <span class="status"></span>
-            <button class="close-chat-btn" onclick="closeChatPopup()">X</button>
+            <button class="close-chat-btn" onclick="closeChatPopup()">❌</button>
         </div>
-        <iframe src="https://www.chatbase.co/chatbot-iframe/5mo4XmZtYlugdlyL64u1V" width="100%"
-            style="height: 100%; min-height: 100px" frameborder="0"></iframe>
+        <iframe src="https://direct.lc.chat/19074571/" width="100% height=100% " style="height: 100%; min-height: 100px"
+            frameborder="0"></iframe>
     </div>
 
     <script>
@@ -528,7 +809,7 @@
 
 <!-- Timer Waktu Kunjungan -->
 <div id="visit-timer" class="timer-box">
-    ⏳ <span id="time-spent">0:00</span>
+    ⏳ <span id="time-spent">00:00:00</span>
 </div>
 
 
@@ -536,19 +817,19 @@
 <!-- CSS untuk Timer -->
 <style>
     .timer-box {
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        color: white;
-        padding: 6px 10px;
-        /* Padding kecil agar tidak terlalu panjang */
-        font-size: 14px;
-        /* Font pas agar mudah dibaca */
+
+        color: rgb(240, 111, 13);
+        padding: 2px 6px;
+        /* Padding lebih kecil */
+        font-size: 10px;
+        /* Ukuran font lebih kecil */
         font-weight: bold;
-        border-radius: 15px;
-        box-shadow: 0px 2px 5px rgba(255, 117, 140, 0.3);
+        border-radius: 10px;
+        /* Border radius lebih kecil */
+        box-shadow: 0px 1px 3px rgba(255, 117, 140, 0.3);
+        /* Shadow lebih halus */
         display: inline-block;
-        /* Supaya lebar menyesuaikan teks */
         white-space: nowrap;
-        /* Mencegah teks turun ke bawah */
     }
 </style>
 
@@ -559,30 +840,26 @@
 
     function updateVisitTimer() {
         let now = new Date().getTime();
-        let elapsedTime = Math.floor((now - startTime) / 1000);
-        let minutes = Math.floor(elapsedTime / 60);
+        let elapsedTime = Math.floor((now - startTime) / 1000); // Waktu dalam detik
+
+        // Menghitung jam, menit, dan detik
+        let hours = Math.floor(elapsedTime / 3600);
+        let minutes = Math.floor((elapsedTime % 3600) / 60);
         let seconds = elapsedTime % 60;
-        document.getElementById("time-spent").innerText = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+        // Format waktu sebagai HH:MM:SS
+        let formattedTime =
+            (hours < 10 ? "0" : "") + hours + ":" +
+            (minutes < 10 ? "0" : "") + minutes + ":" +
+            (seconds < 10 ? "0" : "") + seconds;
+
+        document.getElementById("time-spent").innerText = formattedTime;
     }
 
     setInterval(updateVisitTimer, 1000);
 </script>
 
-<!-- JavaScript Timer -->
-<script>
-    let startTime = sessionStorage.getItem("visitStartTime") || new Date().getTime();
-    sessionStorage.setItem("visitStartTime", startTime);
 
-    function updateVisitTimer() {
-        let now = new Date().getTime();
-        let elapsedTime = Math.floor((now - startTime) / 1000);
-        let minutes = Math.floor(elapsedTime / 60);
-        let seconds = elapsedTime % 60;
-        document.getElementById("time-spent").innerText = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-    }
-
-    setInterval(updateVisitTimer, 1000);
-</script>
 
 
 <body>
@@ -608,52 +885,101 @@
                     Fiber Permata Kasih
                 </h1>
             </a>
+
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link active">Beranda</a>
+                    <a href="index.html" class="nav-item nav-link">Beranda</a>
                     <a href="about.html" class="nav-item nav-link">Tentang</a>
                     <a href="classes.html" class="nav-item nav-link">Gallery</a>
                     <a href="team.html" class="nav-item nav-link">Profil Pengurus</a>
                     <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
                 </div>
+            </div>
 
-                <!-- Tombol DONASI -->
-                <a href="donasi.html" class="btn-donasi-premium">
-                    <img src="img/donasi2.png" alt="Donasi Button" class="donasi-image">
-                </a>
+            <!-- CSS untuk Warna Aktif -->
+            <style>
+                .navbar-nav .nav-link {
+                    color: #000;
+                    transition: color 0.3s ease;
+                }
 
-                <!-- CSS Tambahan -->
-                <style>
-                    .btn-donasi-premium {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        text-decoration: none;
-                        border-radius: none;
-                        position: relative;
-                        overflow: hidden;
-                        transition: all 0.3s ease-in-out;
+                .navbar-nav .nav-link.active,
+                .navbar-nav .nav-link:focus,
+                .navbar-nav .nav-link:hover {
+                    color: rgb(255, 99, 1) !important;
+                }
+            </style>
+
+            <!-- JavaScript untuk Menandai Navbar Aktif -->
+            <script>
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+                navLinks.forEach(link => {
+                    if (link.href === window.location.href) {
+                        link.classList.add('active');
                     }
+                });
+            </script>
 
-                    .donasi-image {
-                        max-height: 90px;
-                        /* Sesuaikan dengan tinggi navbar */
-                        width: auto;
-                        /* Biarkan lebar menyesuaikan proporsi */
-                        border-radius: none;
-                        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-                    }
 
-                    .btn-donasi-premium:hover .donasi-image {
-                        transform: scale(1.1);
-                        /* Sedikit membesar saat hover */
-                        box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.6);
-                        /* Efek glow saat hover */
-                    }
-                </style>
+            <!-- Tombol DONASI -->
+            <a href="donasi.html" class="btn-donasi-premium">
+                <img src="img/donasi2.png" alt="Donasi Button" class="donasi-image">
+                <span class="pointer-hand">👉</span> <!-- Emoji atau ikon tangan pointer -->
+            </a>
+
+            <!-- CSS Tambahan -->
+            <style>
+                .btn-donasi-premium {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    border-radius: none;
+                    position: relative;
+                    overflow: hidden;
+                    transition: all 0.3s ease-in-out;
+                    cursor: pointer;
+                    /* Menambahkan cursor pointer */
+                }
+
+                .donasi-image {
+                    max-height: 90px;
+                    width: auto;
+                    border-radius: none;
+                    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+                    filter: brightness(1);
+                    /* Default brightness */
+                }
+
+                .btn-donasi-premium:hover .donasi-image {
+                    transform: scale(1.1);
+                    box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.6);
+                    filter: brightness(1.2);
+                    /* Membuat gambar lebih terang dan tebal saat hover */
+                }
+
+                .pointer-hand {
+                    position: absolute;
+                    left: -20px;
+                    /* Posisikan tangan pointer di sebelah kanan gambar */
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 24px;
+                    /* Ukuran emoji atau ikon */
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out, right 0.3s ease-in-out;
+                }
+
+                .btn-donasi-premium:hover .pointer-hand {
+                    opacity: 1;
+                    right: -30px;
+                    /* Geser tangan pointer sedikit ke kanan saat hover */
+                }
+            </style>
 
         </nav>
         <!-- Navbar End -->
@@ -684,6 +1010,7 @@
                                             <i class="fa fa-users"></i> DONATUR KAMI
                                         </a>
                                     </div>
+
 
                                     <!-- CSS Tambahan -->
                                     <style>
@@ -907,14 +1234,14 @@
                         </div>
                         <p id="musicStatus" class="text-white">Klik ikon untuk memutar musik</p>
                         <!-- Elemen Audio (pastikan file FPK.mp3 berada di path yang sesuai) -->
-                        <audio id="welcomeMusic" src="video/FPK.mp3"></audio>
+                        <audio id="welcomeMusic" src="D:\CPNS\preschool-website-template\video\FPK.mp3"></audio>
                         <!-- Container gambar animasi boneka -->
                         <div class="boneka-container mt-4">
-                            <img src="aploads/Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
+                            <img src="D:\CPNS\preschool-website-template\aploads\Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
                                 alt="Boneka Animasi 2" class="boneka" />
-                            <img src="aploads/Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
+                            <img src="D:\CPNS\preschool-website-template\aploads\Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
                                 alt="Boneka Animasi 2" class="boneka" />
-                            <img src="aploads/Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
+                            <img src="D:\CPNS\preschool-website-template\aploads\Lumyai Sticker - Lumyai - Discover & Share GIFs.gif"
                                 alt="Boneka Animasi 2" class="boneka" />
                         </div>
                     </div>
@@ -1266,7 +1593,7 @@
 
 
 
-          <!-- Gallery Section Start -->
+        <!-- Gallery Section Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -1569,567 +1896,591 @@
                     </div>
                     <!-- Repeat for other items -->
                 </div>
-                <div class="text-center mt-4">
-                    <button id="loadMore" class="btn btn-primary rounded-pill px-4 py-2">
-                        <i class="fas fa-chevron-down"></i> Tampilkan Semua
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Gallery Section End -->
 
-        <!-- Modal for Comments -->
-        <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="commentModalLabel">Tambah Komentar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Gallery Section End -->
+
+                <!-- Modal for Comments -->
+                <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="commentModalLabel">Tambah Komentar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" class="form-control" id="commentInput"
+                                    placeholder="Tulis komentar...">
+                                <button class="btn btn-primary mt-3" id="addCommentBtn">Kirim</button>
+                                <ul class="list-unstyled mt-3" id="commentList"></ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <input type="text" class="form-control" id="commentInput" placeholder="Tulis komentar...">
-                        <button class="btn btn-primary mt-3" id="addCommentBtn">Kirim</button>
-                        <ul class="list-unstyled mt-3" id="commentList"></ul>
-                    </div>
                 </div>
-            </div>
-        </div>
 
-        <script>
-            // Initialize Likes from localStorage
-            document.querySelectorAll('.like-btn').forEach(button => {
-                const imageName = button.getAttribute('data-image');
-                const likeCountElement = document.getElementById(`like-${imageName}`);
-                let likes = parseInt(localStorage.getItem(`likes-${imageName}`)) || 0;
-                likeCountElement.textContent = likes;
+                <script>
+                    // Initialize Likes from localStorage
+                    document.querySelectorAll('.like-btn').forEach(button => {
+                        const imageName = button.getAttribute('data-image');
+                        const likeCountElement = document.getElementById(`like-${imageName}`);
+                        let likes = parseInt(localStorage.getItem(`likes-${imageName}`)) || 0;
+                        likeCountElement.textContent = likes;
 
-                button.addEventListener('click', () => {
-                    likes++;
-                    likeCountElement.textContent = likes;
-                    localStorage.setItem(`likes-${imageName}`, likes);
+                        button.addEventListener('click', () => {
+                            likes++;
+                            likeCountElement.textContent = likes;
+                            localStorage.setItem(`likes-${imageName}`, likes);
 
-                    // Play click sound
-                    const clickSound = new Audio('aploads/Facebook Like - Sound Effect  ProSounds.mp3');
-                    clickSound.play();
-                });
-            });
-
-            // Comment Modal Functionality
-            const commentModal = document.getElementById('commentModal');
-            const commentInput = document.getElementById('commentInput');
-            const addCommentBtn = document.getElementById('addCommentBtn');
-            const commentList = document.getElementById('commentList');
-            let currentImage = '';
-
-            document.querySelectorAll('.comment-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    currentImage = button.getAttribute('data-image');
-                    commentList.innerHTML = '';
-                    const comments = JSON.parse(localStorage.getItem(`comments-${currentImage}`)) || [];
-                    comments.forEach(comment => {
-                        const li = document.createElement('li');
-                        li.textContent = comment;
-                        commentList.appendChild(li);
+                            // Play click sound
+                            const clickSound = new Audio('aploads/Facebook Like - Sound Effect  ProSounds.mp3');
+                            clickSound.play();
+                        });
                     });
-                });
-            });
 
-            addCommentBtn.addEventListener('click', () => {
-                const commentText = commentInput.value.trim();
-                if (commentText) {
-                    const comments = JSON.parse(localStorage.getItem(`comments-${currentImage}`)) || [];
-                    comments.push(commentText);
-                    localStorage.setItem(`comments-${currentImage}`, JSON.stringify(comments));
-                    const li = document.createElement('li');
-                    li.textContent = commentText;
-                    commentList.appendChild(li);
-                    commentInput.value = '';
-                }
-            });
+                    // Comment Modal Functionality
+                    const commentModal = document.getElementById('commentModal');
+                    const commentInput = document.getElementById('commentInput');
+                    const addCommentBtn = document.getElementById('addCommentBtn');
+                    const commentList = document.getElementById('commentList');
+                    let currentImage = '';
 
-            // Share Button Functionality
-            document.querySelectorAll('.share-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const imageName = button.getAttribute('data-image');
-                    if (navigator.share) {
-                        navigator.share({
-                            title: `Foto ${imageName}`,
-                            text: `Lihat foto ini dari galeri kami!`,
-                            url: window.location.href
-                        }).then(() => console.log('Berhasil dishare!'))
-                            .catch((error) => console.log('Gagal dishare:', error));
-                    } else {
-                        alert('Fitur share tidak didukung di browser Anda.');
+                    document.querySelectorAll('.comment-btn').forEach(button => {
+                        button.addEventListener('click', () => {
+                            currentImage = button.getAttribute('data-image');
+                            commentList.innerHTML = '';
+                            const comments = JSON.parse(localStorage.getItem(`comments-${currentImage}`)) || [];
+                            comments.forEach(comment => {
+                                const li = document.createElement('li');
+                                li.textContent = comment;
+                                commentList.appendChild(li);
+                            });
+                        });
+                    });
+
+                    addCommentBtn.addEventListener('click', () => {
+                        const commentText = commentInput.value.trim();
+                        if (commentText) {
+                            const comments = JSON.parse(localStorage.getItem(`comments-${currentImage}`)) || [];
+                            comments.push(commentText);
+                            localStorage.setItem(`comments-${currentImage}`, JSON.stringify(comments));
+                            const li = document.createElement('li');
+                            li.textContent = commentText;
+                            commentList.appendChild(li);
+                            commentInput.value = '';
+                        }
+                    });
+
+                    // Share Button Functionality
+                    document.querySelectorAll('.share-btn').forEach(button => {
+                        button.addEventListener('click', () => {
+                            const imageName = button.getAttribute('data-image');
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: `Foto ${imageName}`,
+                                    text: `Lihat foto ini dari galeri kami!`,
+                                    url: window.location.href
+                                }).then(() => console.log('Berhasil dishare!'))
+                                    .catch((error) => console.log('Gagal dishare:', error));
+                            } else {
+                                alert('Fitur share tidak didukung di browser Anda.');
+                            }
+                        });
+                    });
+                </script>
+
+                <style>
+                    /* Card Styling */
+                    .card {
+                        background: rgba(255, 255, 255, 0.1);
+                        border: none;
+                        border-radius: 15px;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                        overflow: hidden;
+                        transition: transform 0.3s ease-in-out;
                     }
-                });
-            });
-        </script>
 
-        <style>
-            /* Card Styling */
-            .card {
-                background: rgba(255, 255, 255, 0.1);
-                border: none;
-                border-radius: 15px;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-                overflow: hidden;
-                transition: transform 0.3s ease-in-out;
-            }
+                    .card:hover {
+                        transform: scale(1.02);
+                    }
 
-            .card:hover {
-                transform: scale(1.02);
-            }
+                    .card-img-top {
+                        width: 100%;
+                        height: 300px;
+                        /* Fixed height for uniformity */
+                        object-fit: cover;
+                        /* Ensure the entire image is visible */
+                        border-radius: 15px 15px 0 0;
+                        transition: transform 0.3s ease-in-out;
+                    }
 
-            .card-img-top {
-                width: 100%;
-                height: 300px;
-                /* Fixed height for uniformity */
-                object-fit: cover;
-                /* Ensure the entire image is visible */
-                border-radius: 15px 15px 0 0;
-                transition: transform 0.3s ease-in-out;
-            }
+                    .card-img-top:hover {
+                        transform: scale(1.05);
+                    }
 
-            .card-img-top:hover {
-                transform: scale(1.05);
-            }
+                    /* Image Text */
+                    .image-text {
+                        font-family: 'Lobster Two', cursive;
+                        font-size: 1.2rem;
+                        color: #ff4081;
+                        margin-bottom: 10px;
+                    }
 
-            /* Image Text */
-            .image-text {
-                font-family: 'Lobster Two', cursive;
-                font-size: 1.2rem;
-                color: #ff4081;
-                margin-bottom: 10px;
-            }
+                    /* Actions Buttons */
+                    .actions button {
+                        background: rgba(255, 255, 255, 0.8);
+                        border: none;
+                        border-radius: 5px;
+                        padding: 5px 10px;
+                        cursor: pointer;
+                        transition: transform 0.3s ease-in-out;
+                    }
 
-            /* Actions Buttons */
-            .actions button {
-                background: rgba(255, 255, 255, 0.8);
-                border: none;
-                border-radius: 5px;
-                padding: 5px 10px;
-                cursor: pointer;
-                transition: transform 0.3s ease-in-out;
-            }
+                    .actions button:hover {
+                        transform: scale(1.1);
+                    }
 
-            .actions button:hover {
-                transform: scale(1.1);
-            }
+                    .like-count {
+                        font-size: 14px;
+                        color: #ff4081;
+                    }
 
-            .like-count {
-                font-size: 14px;
-                color: #ff4081;
-            }
 
-            .like-btn i {
-                color: red;
-                /* Change heart icon color to red */
-            }
-        </style>
+                    .like-btn i {
+                        color: red;
+                        /* Change heart icon color to red */
+                    }
+                </style>
 
-        <!-- Appointment Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="bg-light rounded shadow-lg overflow-hidden">
-                    <div class="row g-0">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="h-100 d-flex flex-column justify-content-center p-5">
-                                <h1 class="mb-4 text-primary">Jadwalkan Kunjungan Anda</h1>
-                                <form id="appointmentForm">
-                                    <div class="row g-3">
-                                        <div class="col-sm-6">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control border-0 shadow-sm" id="gname"
-                                                    placeholder="Nama Lengkap">
-                                                <label for="gname">Nama Lengkap</label>
+
+                <!-- Appointment Start -->
+                <div class="container-xxl py-5">
+                    <div class="container">
+                        <div class="bg-light rounded shadow-lg overflow-hidden">
+                            <div class="row g-0">
+                                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="h-100 d-flex flex-column justify-content-center p-5">
+                                        <h1 class="mb-4 text-primary">Jadwalkan Kunjungan Anda</h1>
+                                        <form id="appointmentForm">
+                                            <div class="row g-3">
+                                                <div class="col-sm-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control border-0 shadow-sm"
+                                                            id="gname" placeholder="Nama Lengkap">
+                                                        <label for="gname">Nama Lengkap</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-floating">
+                                                        <input type="email" class="form-control border-0 shadow-sm"
+                                                            id="gmail" placeholder="Alamat Email">
+                                                        <label for="gmail">Alamat Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control border-0 shadow-sm"
+                                                            id="cname" placeholder="Nama Panggil">
+                                                        <label for="cname">Nama Panggil</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control border-0 shadow-sm"
+                                                            id="cage" placeholder="No Telepon">
+                                                        <label for="cage">No Telepon</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control border-0 shadow-sm"
+                                                            placeholder="Pesan" id="message"
+                                                            style="height: 100px"></textarea>
+                                                        <label for="message">Pesan</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button
+                                                        class="btn btn-primary d-inline-flex align-items-center py-3 px-4 rounded-pill shadow-lg btn-send"
+                                                        type="button" onclick="sendToWhatsApp()">Kirim <i
+                                                            class="fa fa-paper-plane ms-2"></i></button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-floating">
-                                                <input type="email" class="form-control border-0 shadow-sm" id="gmail"
-                                                    placeholder="Alamat Email">
-                                                <label for="gmail">Alamat Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control border-0 shadow-sm" id="cname"
-                                                    placeholder="Nama Panggil">
-                                                <label for="cname">Nama Panggil</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control border-0 shadow-sm" id="cage"
-                                                    placeholder="No Telepon">
-                                                <label for="cage">No Telepon</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating">
-                                                <textarea class="form-control border-0 shadow-sm" placeholder="Pesan"
-                                                    id="message" style="height: 100px"></textarea>
-                                                <label for="message">Pesan</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button
-                                                class="btn btn-primary d-inline-flex align-items-center py-3 px-4 rounded-pill shadow-lg btn-send"
-                                                type="button" onclick="sendToWhatsApp()">Kirim <i
-                                                    class="fa fa-paper-plane ms-2"></i></button>
-                                        </div>
+                                        </form>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
-                            <div class="position-relative h-100">
-                                <img class="position-absolute w-100 h-100 rounded" src="img/appointment.jpg"
-                                    style="object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Appointment End -->
-
-        <script>
-            function sendToWhatsApp() {
-                var name = document.getElementById("gname").value;
-                var email = document.getElementById("gmail").value;
-                var nickname = document.getElementById("cname").value;
-                var phone = document.getElementById("cage").value;
-                var message = document.getElementById("message").value;
-
-                var phoneNumber = "+6282177815570"; // Ganti dengan nomor WhatsApp Anda (gunakan format internasional tanpa "+")
-
-                var whatsappMessage = "Halo, saya ingin menjadwalkan kunjungan:\n\n" +
-                    "Nama Lengkap: " + name + "\n" +
-                    "Email: " + email + "\n" +
-                    "Nama Panggil: " + nickname + "\n" +
-                    "No Telepon: " + phone + "\n" +
-                    "Pesan: " + message;
-
-                var encodedMessage = encodeURIComponent(whatsappMessage);
-                var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
-
-                window.open(whatsappURL, "_blank");
-            }
-        </script>
-
-        <!-- CSS Tambahan -->
-        <style>
-            .form-control {
-                border-radius: 10px;
-                transition: all 0.3s ease;
-            }
-
-            .form-floating input:focus,
-            .form-floating textarea:focus {
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                border-color: #007bff;
-                outline: none;
-            }
-
-            .btn-send {
-                background-color: #d14f24;
-                color: white;
-                font-size: 16px;
-                font-weight: 500;
-                border-radius: 50px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                text-decoration: none;
-                transition: all 0.3s ease;
-                padding: 12px 20px;
-            }
-
-            .btn-send:hover {
-                background-color: #b34200;
-                transform: scale(1.05);
-                box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .btn-send i {
-                font-size: 20px;
-                transition: transform 0.3s ease;
-            }
-
-            .btn-send:hover i {
-                transform: translateX(6px);
-            }
-
-            .shadow-lg {
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-        </style>
-
-
-        <!-- Appointment End -->
-
-
-        <!-- Team Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Profil Pengurus</h1>
-                    <p>Tim pengurus kami terdiri dari orang-orang yang peduli dan ingin membantu anak-anak yang
-                        membutuhkan.</p>
-                </div>
-                <div class="row g-4 justify-content-center">
-                    <!-- Anggota Tim 1 -->
-                    <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.1s">
-                        <div class="team-item">
-                            <img class="img-fluid rounded-circle w-75 mb-3" src="img/-1.jpg" alt="Ignatius Waruwu">
-                            <h4 class="mb-1">Ignatius Waruwu</h4>
-                            <p class="text-muted">Pendiri Fiber PermataKasih</p>
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square btn-primary mx-1"
-                                    href="https://www.facebook.com/praktiswaruwu.praktiswaruwu"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Anggota Tim 2 -->
-                    <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.3s">
-                        <div class="team-item">
-                            <img class="img-fluid rounded-circle w-75 mb-3" src="img/-2.jpg" alt="Warniman Laia">
-                            <h4 class="mb-1">Warniman Laia</h4>
-                            <p class="text-muted">Bendahara</p>
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square btn-primary mx-1"
-                                    href="https://www.facebook.com/people/Henrikus-P-S-Waruwu/pfbid02pFUbZyBFcfnCEneqshKpQ3Gk9ZQASfftoy4P9z2C76eo7FKDxV61Dqdd66Ni3pxtl/"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Anggota Tim 3 -->
-                    <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.5s">
-                        <div class="team-item">
-                            <img class="img-fluid rounded-circle w-75 mb-3" src="#" alt="#">
-                            <h4 class="mb-1">#</h4>
-                            <p class="text-muted">Konseling</p>
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square btn-primary mx-1"
-                                    href="https://www.facebook.com/King.Sidorus?rdid=2q1S2IZtTay98LuT&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15yQHRmMQP%2F#"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
-
-        <style>
-            .team-item img {
-                transition: transform 0.3s ease;
-            }
-
-            .team-item img:hover {
-                transform: scale(1.05);
-            }
-
-            .btn-square {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        </style>
-
-
-
-        <!-- Testimonial Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3"
-                        style="font-family:lobster two, cursive 'Playfair Display', serif; font-weight: 700; color: #ff758c;">
-                        💖 Suara Donatur Kami!</h1>
-                    <p style="font-size: 18px; color: #555;">Kami ingin membagikan pengalaman dan cerita dari para
-                        donatur kami yang telah membantu mewujudkan harapan anak-anak.</p>
-                </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-
-                    <!-- Testimonial Item -->
-                    <div class="testimonial-item rounded p-5">
-                        <p class="fs-5" style="font-style: italic; color: #333;">"Saya merasa sangat bangga dapat
-                            menjadi bagian dari misi Panti Asuhan Fiber Permata Kasih. Mereka melakukan pekerjaan yang
-                            luar biasa dalam membantu anak-anak yang membutuhkan."</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" src="img/testimonial-1.jpg"
-                                style="width: 100px; height: 100px; border: 3px solid #ff758c;">
-                            <div class="ps-3">
-                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Ibu Sry</h4>
-                                <span style="color: #777;">Ibu Rumah Tangga</span>
-                            </div>
-                            <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
-                                style="color: rgba(255, 117, 140, 0.8);"></i>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial Item -->
-                    <div class="testimonial-item rounded p-5">
-                        <p class="fs-5" style="font-style: italic; color: #333;">"Saya sangat terkesan dengan
-                            transparansi dan akuntabilitas Panti Asuhan Fiber Permata Kasih. Mereka benar-benar
-                            menggunakan donasi saya untuk anak-anak yang membutuhkan."</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" src="img/testimonial-2.jpg"
-                                style="width: 100px; height: 100px; border: 3px solid #ff758c;">
-                            <div class="ps-3">
-                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Bapak Rudi</h4>
-                                <span style="color: #777;">Pengusaha</span>
-                            </div>
-                            <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
-                                style="color: rgba(255, 117, 140, 0.8);"></i>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial Item -->
-                    <div class="testimonial-item rounded p-5">
-                        <p class="fs-5" style="font-style: italic; color: #333;">"Membantu Panti Asuhan Fiber Permata
-                            Kasih adalah cara saya untuk memberikan kembali kepada masyarakat. Saya merasa sangat
-                            bahagia dapat menjadi bagian dari komunitas yang peduli dengan anak-anak yang membutuhkan."
-                        </p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" src="img/testimonial-3.jpg"
-                                style="width: 100px; height: 100px; border: 3px solid #ff758c;">
-                            <div class="ps-3">
-                                <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Dewi</h4>
-                                <span style="color: #777;">Dokter</span>
-                            </div>
-                            <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
-                                style="color: rgba(255, 117, 140, 0.8);"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
-
-        <!-- CSS Tambahan -->
-        <style>
-            .testimonial-item {
-                background: linear-gradient(135deg, #fff, #ffe4e9);
-                border-radius: 15px;
-                box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.2);
-                transition: all 0.3s ease-in-out;
-            }
-
-            .testimonial-item:hover {
-                transform: scale(1.02);
-                box-shadow: 0px 6px 20px rgba(255, 117, 140, 0.4);
-            }
-        </style>
-
-        <!-- Testimonial and Comment Section Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3" style="font-family:lobster two, cursive; font-weight: 700; color: #ff758c;">
-                        💖 Testimonial & Komentar</h1>
-                    <p style="font-size: 18px; color: #555;">Bagikan pengalaman dan dukungan Anda untuk Panti Asuhan
-                        Fiber Permata Kasih</p>
-                </div>
-
-                <!-- Comment Form -->
-                <div class="comment-form-container mb-5">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <form id="commentForm" class="p-4 rounded shadow-sm bg-white">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="nameInput" placeholder="Nama Anda"
-                                        required>
                                 </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" id="commentInput" rows="3"
-                                        placeholder="Tulis komentar Anda di sini..." required></textarea>
+                                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                                    <div class="position-relative h-100">
+                                        <img class="position-absolute w-100 h-100 rounded" src="img/appointment.jpg"
+                                            style="object-fit: cover;">
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary rounded-pill">Kirim Komentar</button>
-                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Appointment End -->
+
+                <script>
+                    function sendToWhatsApp() {
+                        var name = document.getElementById("gname").value;
+                        var email = document.getElementById("gmail").value;
+                        var nickname = document.getElementById("cname").value;
+                        var phone = document.getElementById("cage").value;
+                        var message = document.getElementById("message").value;
+
+                        var phoneNumber = "+6282177815570"; // Ganti dengan nomor WhatsApp Anda (gunakan format internasional tanpa "+")
+
+                        var whatsappMessage = "Halo, saya ingin menjadwalkan kunjungan:\n\n" +
+                            "Nama Lengkap: " + name + "\n" +
+                            "Email: " + email + "\n" +
+                            "Nama Panggil: " + nickname + "\n" +
+                            "No Telepon: " + phone + "\n" +
+                            "Pesan: " + message;
+
+                        var encodedMessage = encodeURIComponent(whatsappMessage);
+                        var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+
+                        window.open(whatsappURL, "_blank");
+                    }
+                </script>
+
+                <!-- CSS Tambahan -->
+                <style>
+                    .form-control {
+                        border-radius: 10px;
+                        transition: all 0.3s ease;
+                    }
+
+                    .form-floating input:focus,
+                    .form-floating textarea:focus {
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        border-color: #007bff;
+                        outline: none;
+                    }
+
+                    .btn-send {
+                        background-color: #d14f24;
+                        color: white;
+                        font-size: 16px;
+                        font-weight: 500;
+                        border-radius: 50px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 8px;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                        padding: 12px 20px;
+                    }
+
+                    .btn-send:hover {
+                        background-color: #b34200;
+                        transform: scale(1.05);
+                        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+                    }
+
+                    .btn-send i {
+                        font-size: 20px;
+                        transition: transform 0.3s ease;
+                    }
+
+                    .btn-send:hover i {
+                        transform: translateX(6px);
+                    }
+
+                    .shadow-lg {
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                    }
+                </style>
+
+
+                <!-- Appointment End -->
+
+
+                <!-- Team Start -->
+                <div class="container-xxl py-5">
+                    <div class="container">
+                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
+                            style="max-width: 600px;">
+                            <h1 class="mb-3">Profil Pengurus</h1>
+                            <p>Tim pengurus kami terdiri dari orang-orang yang peduli dan ingin membantu anak-anak yang
+                                membutuhkan.</p>
+                        </div>
+                        <div class="row g-4 justify-content-center">
+                            <!-- Anggota Tim 1 -->
+                            <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.1s">
+                                <div class="team-item">
+                                    <img class="img-fluid rounded-circle w-75 mb-3" src="img/-1.jpg"
+                                        alt="Ignatius Waruwu">
+                                    <h4 class="mb-1">Ignatius Waruwu</h4>
+                                    <p class="text-muted">Pendiri Fiber PermataKasih</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-square btn-primary mx-1"
+                                            href="https://www.facebook.com/praktiswaruwu.praktiswaruwu"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-square btn-primary mx-1" href="#"><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-square btn-primary mx-1" href="#"><i
+                                                class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Anggota Tim 2 -->
+                            <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.3s">
+                                <div class="team-item">
+                                    <img class="img-fluid rounded-circle w-75 mb-3" src="img/-2.jpg"
+                                        alt="Warniman Laia">
+                                    <h4 class="mb-1">Warniman Laia</h4>
+                                    <p class="text-muted">Bendahara</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-square btn-primary mx-1"
+                                            href="https://www.facebook.com/people/Henrikus-P-S-Waruwu/pfbid02pFUbZyBFcfnCEneqshKpQ3Gk9ZQASfftoy4P9z2C76eo7FKDxV61Dqdd66Ni3pxtl/"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-square btn-primary mx-1" href="#"><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-square btn-primary mx-1" href="#"><i
+                                                class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Anggota Tim 3 -->
+                            <div class="col-lg-4 col-md-6 wow fadeInUp text-center" data-wow-delay="0.5s">
+                                <div class="team-item">
+                                    <img class="img-fluid rounded-circle w-75 mb-3" src="#" alt="#">
+                                    <h4 class="mb-1">#</h4>
+                                    <p class="text-muted">Konseling</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-square btn-primary mx-1"
+                                            href="https://www.facebook.com/King.Sidorus?rdid=2q1S2IZtTay98LuT&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15yQHRmMQP%2F#"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-square btn-primary mx-1" href="#"><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-square btn-primary mx-1" href="#"><i
+                                                class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team End -->
+
+                <style>
+                    .team-item img {
+                        transition: transform 0.3s ease;
+                    }
+
+                    .team-item img:hover {
+                        transform: scale(1.05);
+                    }
+
+                    .btn-square {
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                </style>
+
+
+
+                <!-- Testimonial Start -->
+                <div class="container-xxl py-5">
+                    <div class="container">
+                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
+                            style="max-width: 600px;">
+                            <h1 class="mb-3"
+                                style="font-family:lobster two, cursive 'Playfair Display', serif; font-weight: 700; color: #ff758c;">
+                                💖 Suara Donatur Kami!</h1>
+                            <p style="font-size: 18px; color: #555;">Kami ingin membagikan pengalaman dan cerita dari
+                                para
+                                donatur kami yang telah membantu mewujudkan harapan anak-anak.</p>
+                        </div>
+                        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+                            <!-- Testimonial Item -->
+                            <div class="testimonial-item rounded p-5">
+                                <p class="fs-5" style="font-style: italic; color: #333;">"Saya merasa sangat bangga
+                                    dapat
+                                    menjadi bagian dari misi Panti Asuhan Fiber Permata Kasih. Mereka melakukan
+                                    pekerjaan yang
+                                    luar biasa dalam membantu anak-anak yang membutuhkan."</p>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg"
+                                        src="img/testimonial-1.jpg"
+                                        style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                                    <div class="ps-3">
+                                        <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Ibu Sry</h4>
+                                        <span style="color: #777;">Ibu Rumah Tangga</span>
+                                    </div>
+                                    <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                        style="color: rgba(255, 117, 140, 0.8);"></i>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial Item -->
+                            <div class="testimonial-item rounded p-5">
+                                <p class="fs-5" style="font-style: italic; color: #333;">"Saya sangat terkesan dengan
+                                    transparansi dan akuntabilitas Panti Asuhan Fiber Permata Kasih. Mereka benar-benar
+                                    menggunakan donasi saya untuk anak-anak yang membutuhkan."</p>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg"
+                                        src="img/testimonial-2.jpg"
+                                        style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                                    <div class="ps-3">
+                                        <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Bapak Rudi</h4>
+                                        <span style="color: #777;">Pengusaha</span>
+                                    </div>
+                                    <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                        style="color: rgba(255, 117, 140, 0.8);"></i>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial Item -->
+                            <div class="testimonial-item rounded p-5">
+                                <p class="fs-5" style="font-style: italic; color: #333;">"Membantu Panti Asuhan Fiber
+                                    Permata
+                                    Kasih adalah cara saya untuk memberikan kembali kepada masyarakat. Saya merasa
+                                    sangat
+                                    bahagia dapat menjadi bagian dari komunitas yang peduli dengan anak-anak yang
+                                    membutuhkan."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg"
+                                        src="img/testimonial-3.jpg"
+                                        style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                                    <div class="ps-3">
+                                        <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Dewi</h4>
+                                        <span style="color: #777;">Dokter</span>
+                                    </div>
+                                    <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                        style="color: rgba(255, 117, 140, 0.8);"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial End -->
+
+                <!-- CSS Tambahan -->
+                <style>
+                    .testimonial-item {
+                        background: linear-gradient(135deg, #fff, #ffe4e9);
+                        border-radius: 15px;
+                        box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.2);
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    .testimonial-item:hover {
+                        transform: scale(1.02);
+                        box-shadow: 0px 6px 20px rgba(255, 117, 140, 0.4);
+                    }
+                </style>
+
+                <!-- Testimonial and Comment Section Start -->
+                <div class="container-xxl py-5">
+                    <div class="container">
+                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
+                            style="max-width: 600px;">
+                            <h1 class="mb-3"
+                                style="font-family:lobster two, cursive; font-weight: 700; color: #ff758c;">
+                                💖 Testimonial & Komentar</h1>
+                            <p style="font-size: 18px; color: #555;">Bagikan pengalaman dan dukungan Anda untuk Panti
+                                Asuhan
+                                Fiber Permata Kasih</p>
+                        </div>
+
+                        <!-- Comment Form -->
+                        <div class="comment-form-container mb-5">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <form id="commentForm" class="p-4 rounded shadow-sm bg-white">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="nameInput"
+                                                placeholder="Nama Anda" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <textarea class="form-control" id="commentInput" rows="3"
+                                                placeholder="Tulis komentar Anda di sini..." required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary rounded-pill">Kirim
+                                            Komentar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comments Display -->
+                        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s"
+                            id="commentsList">
+                            <!-- Comments will be loaded here -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Comments Display -->
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s" id="commentsList">
-                    <!-- Comments will be loaded here -->
-                </div>
-            </div>
-        </div>
+                <script>
+                    // Single Firebase configuration
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyBIdtCc_1Pefx6EQjzM2VQWfqx0UtufaIU",
+                        authDomain: "asuhan-66339.firebaseapp.com",
+                        databaseURL: "https://asuhan-66339-default-rtdb.firebaseio.com",
+                        projectId: "asuhan-66339",
+                        storageBucket: "asuhan-66339.firebaseapp.com",
+                        messagingSenderId: "366179538343",
+                        appId: "1:366179538343:web:25dd1cf18a70e235905282",
+                        measurementId: "G-J7FNHDD1EJ"
+                    };
 
-        <script>
-            // Single Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyBIdtCc_1Pefx6EQjzM2VQWfqx0UtufaIU",
-                authDomain: "asuhan-66339.firebaseapp.com",
-                databaseURL: "https://asuhan-66339-default-rtdb.firebaseio.com",
-                projectId: "asuhan-66339",
-                storageBucket: "asuhan-66339.firebaseapp.com",
-                messagingSenderId: "366179538343",
-                appId: "1:366179538343:web:25dd1cf18a70e235905282",
-                measurementId: "G-J7FNHDD1EJ"
-            };
+                    // Initialize Firebase once
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp(firebaseConfig);
+                    }
 
-            // Initialize Firebase once
-            if (!firebase.apps.length) {
-                firebase.initializeApp(firebaseConfig);
-            }
+                    const database = firebase.database();
+                    const commentsRef = database.ref('comments');
 
-            const database = firebase.database();
-            const commentsRef = database.ref('comments');
+                    // Submit comment
+                    document.getElementById('commentForm').addEventListener('submit', (e) => {
+                        e.preventDefault();
 
-            // Submit comment
-            document.getElementById('commentForm').addEventListener('submit', (e) => {
-                e.preventDefault();
+                        const name = document.getElementById('nameInput').value;
+                        const comment = document.getElementById('commentInput').value;
 
-                const name = document.getElementById('nameInput').value;
-                const comment = document.getElementById('commentInput').value;
-
-                if (name && comment) {
-                    commentsRef.push({
-                        name: name,
-                        comment: comment,
-                        timestamp: Date.now(),
-                        likes: 0
-                    }).then(() => {
-                        document.getElementById('commentForm').reset();
-                        // Scroll to comments
-                        document.getElementById('commentsList').scrollIntoView({ behavior: 'smooth' });
-                    }).catch((error) => {
-                        console.error('Error:', error);
-                        alert('Gagal mengirim komentar. Silakan coba lagi.');
+                        if (name && comment) {
+                            commentsRef.push({
+                                name: name,
+                                comment: comment,
+                                timestamp: Date.now(),
+                                likes: 0
+                            }).then(() => {
+                                document.getElementById('commentForm').reset();
+                                // Scroll to comments
+                                document.getElementById('commentsList').scrollIntoView({ behavior: 'smooth' });
+                            }).catch((error) => {
+                                console.error('Error:', error);
+                                alert('Gagal mengirim komentar. Silakan coba lagi.');
+                            });
+                        }
                     });
-                }
-            });
 
-            // Load and display comments
-            commentsRef.on('value', (snapshot) => {
-                const comments = snapshot.val();
-                const commentsContainer = document.getElementById('commentsList');
-                commentsContainer.innerHTML = '';
+                    // Load and display comments
+                    commentsRef.on('value', (snapshot) => {
+                        const comments = snapshot.val();
+                        const commentsContainer = document.getElementById('commentsList');
+                        commentsContainer.innerHTML = '';
 
-                if (comments) {
-                    Object.keys(comments).reverse().forEach((id) => {
-                        const comment = comments[id];
-                        const div = document.createElement('div');
-                        div.className = 'testimonial-item rounded p-5';
-                        div.innerHTML = `
+                        if (comments) {
+                            Object.keys(comments).reverse().forEach((id) => {
+                                const comment = comments[id];
+                                const div = document.createElement('div');
+                                div.className = 'testimonial-item rounded p-5';
+                                div.innerHTML = `
                         <p class="fs-5" style="font-style: italic; color: #333;">"${comment.comment}"</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg" 
@@ -2147,240 +2498,246 @@
                             </div>
                         </div>
                     `;
-                        commentsContainer.appendChild(div);
-                    });
+                                commentsContainer.appendChild(div);
+                            });
 
-                    // Reinitialize owl carousel
-                    $('.testimonial-carousel').owlCarousel({
-                        loop: true,
-                        margin: 10,
-                        nav: true,
-                        responsive: {
-                            0: { items: 1 },
-                            768: { items: 2 }
+                            // Reinitialize owl carousel
+                            $('.testimonial-carousel').owlCarousel({
+                                loop: true,
+                                margin: 10,
+                                nav: true,
+                                responsive: {
+                                    0: { items: 1 },
+                                    768: { items: 2 }
+                                }
+                            });
                         }
                     });
-                }
-            });
 
-            // Like functionality
-            window.likeComment = function (commentId) {
-                const commentRef = commentsRef.child(commentId);
-                commentRef.once('value').then((snapshot) => {
-                    const comment = snapshot.val();
-                    const currentLikes = comment.likes || 0;
-                    commentRef.update({
-                        likes: currentLikes + 1
-                    });
-                });
-            }
-        </script>
+                    // Like functionality
+                    window.likeComment = function (commentId) {
+                        const commentRef = commentsRef.child(commentId);
+                        commentRef.once('value').then((snapshot) => {
+                            const comment = snapshot.val();
+                            const currentLikes = comment.likes || 0;
+                            commentRef.update({
+                                likes: currentLikes + 1
+                            });
+                        });
+                    }
+                </script>
 
 
 
-        <!-- Footer Start -->
-        <footer class="footer-section"
-            style="background: linear-gradient(135deg, #FF6F61 0%, #FFA726 100%); font-family: 'Poppins', sans-serif; color: #fff;">
-            <div class="container py-5">
-                <div class="row g-5">
+                <!-- Footer Start -->
+                <footer class="footer-section"
+                    style="background: linear-gradient(135deg, #FF6F61 0%, #FFA726 100%); font-family: 'Poppins', sans-serif; color: #fff;">
+                    <div class="container py-5">
+                        <div class="row g-5">
 
-                    <!-- Contact Section -->
-                    <div class="col-lg-3 col-md-6">
-                        <h3 class="text-white mb-4">Hubungi Kami</h3>
-                        <p class="mb-2 d-flex align-items-center"><i
-                                class="fa fa-map-marker-alt me-3 text-warning"></i>Jl.
-                            Bunga Ester VIII No.9, Padang Bulan Selayang II, Kec. Medan Selayang, Kota Medan, Sumatera
-                            Utara
-                            20131</p>
-                        <p class="mb-2 d-flex align-items-center"><i class="fa fa-phone-alt me-3 text-warning"></i>+62
-                            821-7781-5570</p>
-                        <p class="mb-2 d-flex align-items-center"><i
-                                class="fa fa-envelope me-3 text-warning"></i>fiberpermatakasih@gmail.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm" href="#"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm" href="#"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm" href="#"><i
-                                    class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm"
-                                href="https://wa.me/6282177815570"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
+                            <!-- Contact Section -->
+                            <div class="col-lg-3 col-md-6">
+                                <h3 class="text-white mb-4">Hubungi Kami</h3>
+                                <p class="mb-2 d-flex align-items-center"><i
+                                        class="fa fa-map-marker-alt me-3 text-warning"></i>Jl.
+                                    Bunga Ester VIII No.9, Padang Bulan Selayang II, Kec. Medan Selayang, Kota Medan,
+                                    Sumatera
+                                    Utara
+                                    20131</p>
+                                <p class="mb-2 d-flex align-items-center"><i
+                                        class="fa fa-phone-alt me-3 text-warning"></i>+62
+                                    821-7781-5570</p>
+                                <p class="mb-2 d-flex align-items-center"><i
+                                        class="fa fa-envelope me-3 text-warning"></i>fiberpermatakasih@gmail.com</p>
+                                <div class="d-flex pt-2">
+                                    <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm"
+                                        href="#"><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm"
+                                        href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm"
+                                        href="#"><i class="fab fa-youtube"></i></a>
+                                    <a class="btn btn-outline-light btn-social rounded-circle me-2 shadow-sm"
+                                        href="https://wa.me/6282177815570"><i class="fab fa-whatsapp"></i></a>
+                                </div>
+                            </div>
 
-                    <!-- Map Section -->
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <div class="position-relative h-100">
-                            <iframe class="position-relative rounded w-100 h-100 shadow"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.811265695526!2d98.650238!3d3.589416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131b2c0b4e5b3%3A0x7f7c8b5b8b8b8b8b!2sJl.%20Bunga%20Ester%20VIII%20No.9%2C%20Padang%20Bulan%20Selayang%20II%2C%20Kec.%20Medan%20Selayang%2C%20Kota%20Medan%2C%20Sumatera%20Utara%2020131!5e0!3m2!1sen!2sid!4v1697885400000!5m2!1sen!2sid"
-                                frameborder="0" style="min-height: 200px; border:0;" allowfullscreen=""
-                                aria-hidden="false" tabindex="0"></iframe>
-                        </div>
-                    </div>
+                            <!-- Map Section -->
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="position-relative h-100">
+                                    <iframe class="position-relative rounded w-100 h-100 shadow"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.811265695526!2d98.650238!3d3.589416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131b2c0b4e5b3%3A0x7f7c8b5b8b8b8b8b!2sJl.%20Bunga%20Ester%20VIII%20No.9%2C%20Padang%20Bulan%20Selayang%20II%2C%20Kec.%20Medan%20Selayang%2C%20Kota%20Medan%2C%20Sumatera%20Utara%2020131!5e0!3m2!1sen!2sid!4v1697885400000!5m2!1sen!2sid"
+                                        frameborder="0" style="min-height: 200px; border:0;" allowfullscreen=""
+                                        aria-hidden="false" tabindex="0"></iframe>
+                                </div>
+                            </div>
 
-                    <!-- Newsletter Section -->
-                    <div class="col-lg-3 col-md-6">
-                        <h3 class="text-white mb-4">Berita Terkini</h3>
-                        <p>Kami sangat bangga dengan prestasi anak-anak kami. Mereka telah menunjukkan bahwa mereka
-                            memiliki
-                            potensi dan bakat yang luar biasa," kata Ibu Sri, Kepala Panti Asuhan Fiber Permata Kasih.
-                        </p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <form id="emailForm">
-                                <input class="form-control bg-transparent text-white w-100 py-3 ps-4 pe-5 shadow-sm"
-                                    type="email" id="email" name="email" placeholder="Your email" required>
-                                <button type="submit"
-                                    class="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2 shadow-sm">Kirim</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Copyright Section -->
-            <div class="container-fluid bg-dark text-white py-4">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 text-center text-md-start">
-                            &copy; <a class="text-warning border-bottom" href="#">FiberPermataKasih</a>, All Rights
-                            Reserved.
-                            Designed By <a class="text-warning border-bottom" href="#">Permata Kasih</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="#" class="text-white me-3">Beranda</a>
-                                <a href="#" class="text-white me-3">Cookies</a>
-                                <a href="#" class="text-white me-3">Bantuan</a>
-                                <a href="#" class="text-white">FQAs</a>
+                            <!-- Newsletter Section -->
+                            <div class="col-lg-3 col-md-6">
+                                <h3 class="text-white mb-4">Berita Terkini</h3>
+                                <p>Kami sangat bangga dengan prestasi anak-anak kami. Mereka telah menunjukkan bahwa
+                                    mereka
+                                    memiliki
+                                    potensi dan bakat yang luar biasa," kata Ibu Sri, Kepala Panti Asuhan Fiber Permata
+                                    Kasih.
+                                </p>
+                                <div class="position-relative mx-auto" style="max-width: 400px;">
+                                    <form id="emailForm">
+                                        <input
+                                            class="form-control bg-transparent text-white w-100 py-3 ps-4 pe-5 shadow-sm"
+                                            type="email" id="email" name="email" placeholder="Your email" required>
+                                        <button type="submit"
+                                            class="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2 shadow-sm">Kirim</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer End -->
 
-        <!-- CSS Animations -->
-        <style>
-            /* Hover Effects */
-            .footer-section a:hover {
-                color: #FFD700 !important;
-                transition: all 0.3s ease-in-out;
-            }
+                    <!-- Copyright Section -->
+                    <div class="container-fluid bg-dark text-white py-4">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 text-center text-md-start">
+                                    &copy; <a class="text-warning border-bottom" href="#">FiberPermataKasih</a>, All
+                                    Rights
+                                    Reserved.
+                                    Designed By <a class="text-warning border-bottom" href="#">Permata Kasih</a>
+                                </div>
+                                <div class="col-md-6 text-center text-md-end">
+                                    <div class="footer-menu">
+                                        <a href="#" class="text-white me-3">Beranda</a>
+                                        <a href="#" class="text-white me-3">Cookies</a>
+                                        <a href="#" class="text-white me-3">Bantuan</a>
+                                        <a href="#" class="text-white">FQAs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer End -->
 
-            .footer-section .btn-social:hover {
-                background-color: #FFD700 !important;
-                color: #000 !important;
-                transform: scale(1.1);
-                transition: all 0.3s ease-in-out;
-            }
+                <!-- CSS Animations -->
+                <style>
+                    /* Hover Effects */
+                    .footer-section a:hover {
+                        color: #FFD700 !important;
+                        transition: all 0.3s ease-in-out;
+                    }
 
-            /* Shadow Effects */
-            .shadow-sm {
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-            }
+                    .footer-section .btn-social:hover {
+                        background-color: #FFD700 !important;
+                        color: #000 !important;
+                        transform: scale(1.1);
+                        transition: all 0.3s ease-in-out;
+                    }
 
-            /* Smooth Transitions */
-            .footer-section input:focus,
-            .footer-section button:focus {
-                outline: none;
-                box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
-                border-color: #FFD700;
-                transition: all 0.3s ease-in-out;
-            }
+                    /* Shadow Effects */
+                    .shadow-sm {
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+                    }
 
-            /* Gradient for Buttons */
-            .footer-section button {
-                background: linear-gradient(135deg, #FF6F61 0%, #FFA726 100%);
-                border: none;
-                color: #fff;
-                transition: all 0.3s ease-in-out;
-            }
+                    /* Smooth Transitions */
+                    .footer-section input:focus,
+                    .footer-section button:focus {
+                        outline: none;
+                        box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+                        border-color: #FFD700;
+                        transition: all 0.3s ease-in-out;
+                    }
 
-            .footer-section button:hover {
-                background: linear-gradient(135deg, #FFA726 0%, #FF6F61 100%);
-                transform: scale(1.05);
-            }
-        </style>
+                    /* Gradient for Buttons */
+                    .footer-section button {
+                        background: linear-gradient(135deg, #FF6F61 0%, #FFA726 100%);
+                        border: none;
+                        color: #fff;
+                        transition: all 0.3s ease-in-out;
+                    }
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+                    .footer-section button:hover {
+                        background: linear-gradient(135deg, #FFA726 0%, #FF6F61 100%);
+                        transform: scale(1.05);
+                    }
+                </style>
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+                <!-- JavaScript Libraries -->
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="lib/wow/wow.min.js"></script>
+                <script src="lib/easing/easing.min.js"></script>
+                <script src="lib/waypoints/waypoints.min.js"></script>
+                <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-        <!-- Firebase Scripts -->
-        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+                <!-- Template Javascript -->
+                <script src="js/main.js"></script>
 
-        <script>
-            // Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyBIdtCc_1Pefx6EQjzM2VQWfqx0UtufaIU",
-                authDomain: "asuhan-66339.firebaseapp.com",
-                databaseURL: "https://asuhan-66339-default-rtdb.firebaseio.com/",
-                projectId: "asuhan-66339",
-                storageBucket: "asuhan-66339.firebaseapp.com",
-                messagingSenderId: "366179538343",
-                appId: "1:366179538343:web:25dd1cf18a70e235905282",
-                measurementId: "G-J7FNHDD1EJ"
-            };
+                <!-- Firebase Scripts -->
+                <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-
-            // Get database reference
-            const database = firebase.database();
-            const commentsRef = database.ref('comments');
-
-            // Submit comment
-            document.getElementById('commentForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const name = document.getElementById('nameInput').value;
-                const comment = document.getElementById('commentInput').value;
-
-                if (name && comment) {
-                    const newComment = {
-                        name: name,
-                        comment: comment,
-                        timestamp: Date.now(),
-                        likes: 0
+                <script>
+                    // Firebase configuration
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyBIdtCc_1Pefx6EQjzM2VQWfqx0UtufaIU",
+                        authDomain: "asuhan-66339.firebaseapp.com",
+                        databaseURL: "https://asuhan-66339-default-rtdb.firebaseio.com/",
+                        projectId: "asuhan-66339",
+                        storageBucket: "asuhan-66339.firebaseapp.com",
+                        messagingSenderId: "366179538343",
+                        appId: "1:366179538343:web:25dd1cf18a70e235905282",
+                        measurementId: "G-J7FNHDD1EJ"
                     };
 
-                    // Push to Firebase
-                    commentsRef.push(newComment)
-                        .then(() => {
-                            console.log('Comment saved successfully');
-                            document.getElementById('commentForm').reset();
-                        })
-                        .catch((error) => {
-                            console.error('Error saving comment:', error);
-                            alert('Error saving comment. Please try again.');
-                        });
-                }
-            });
+                    // Initialize Firebase
+                    firebase.initializeApp(firebaseConfig);
 
-            // Load and display comments
-            commentsRef.on('value', (snapshot) => {
-                const comments = snapshot.val();
-                const commentsContainer = document.getElementById('commentsList');
-                commentsContainer.innerHTML = '';
+                    // Get database reference
+                    const database = firebase.database();
+                    const commentsRef = database.ref('comments');
 
-                if (comments) {
-                    Object.keys(comments).reverse().forEach((id) => {
-                        const comment = comments[id];
-                        const div = document.createElement('div');
-                        div.className = 'col-lg-8';
-                        div.innerHTML = `
+                    // Submit comment
+                    document.getElementById('commentForm').addEventListener('submit', (e) => {
+                        e.preventDefault();
+
+                        const name = document.getElementById('nameInput').value;
+                        const comment = document.getElementById('commentInput').value;
+
+                        if (name && comment) {
+                            const newComment = {
+                                name: name,
+                                comment: comment,
+                                timestamp: Date.now(),
+                                likes: 0
+                            };
+
+                            // Push to Firebase
+                            commentsRef.push(newComment)
+                                .then(() => {
+                                    console.log('Comment saved successfully');
+                                    document.getElementById('commentForm').reset();
+                                })
+                                .catch((error) => {
+                                    console.error('Error saving comment:', error);
+                                    alert('Error saving comment. Please try again.');
+                                });
+                        }
+                    });
+
+                    // Load and display comments
+                    commentsRef.on('value', (snapshot) => {
+                        const comments = snapshot.val();
+                        const commentsContainer = document.getElementById('commentsList');
+                        commentsContainer.innerHTML = '';
+
+                        if (comments) {
+                            Object.keys(comments).reverse().forEach((id) => {
+                                const comment = comments[id];
+                                const div = document.createElement('div');
+                                div.className = 'col-lg-8';
+                                div.innerHTML = `
                 <div class="comment-card card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">${comment.name}</h5>
@@ -2395,23 +2752,24 @@
                     </div>
                 </div>
             `;
-                        commentsContainer.appendChild(div);
+                                commentsContainer.appendChild(div);
+                            });
+                        }
                     });
-                }
-            });
 
-            // Like functionality
-            function likeComment(commentId) {
-                const commentRef = commentsRef.child(commentId);
-                commentRef.once('value').then((snapshot) => {
-                    const comment = snapshot.val();
-                    const currentLikes = comment.likes || 0;
-                    commentRef.update({
-                        likes: currentLikes + 1
-                    });
-                });
-            }
-        </script>
+                    // Like functionality
+                    function likeComment(commentId) {
+                        const commentRef = commentsRef.child(commentId);
+                        commentRef.once('value').then((snapshot) => {
+                            const comment = snapshot.val();
+                            const currentLikes = comment.likes || 0;
+                            commentRef.update({
+                                likes: currentLikes + 1
+                            });
+                        });
+                    }
+                </script>
+
 </body>
 
 </html>
