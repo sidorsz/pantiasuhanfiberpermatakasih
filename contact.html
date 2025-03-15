@@ -115,7 +115,7 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar Start -->
+         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
             <a href="index.html" class="navbar-brand">
                 <h1 class="m-0 text-primary">
@@ -124,17 +124,45 @@
                     Fiber Permata Kasih
                 </h1>
             </a>
+
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link active">Beranda</a>
+                    <a href="index.html" class="nav-item nav-link">Beranda</a>
                     <a href="about.html" class="nav-item nav-link">Tentang</a>
                     <a href="classes.html" class="nav-item nav-link">Gallery</a>
                     <a href="team.html" class="nav-item nav-link">Profil Pengurus</a>
                     <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
                 </div>
+            </div>
+
+            <!-- CSS untuk Warna Aktif -->
+            <style>
+                .navbar-nav .nav-link {
+                    color: #000;
+                    transition: color 0.3s ease;
+                }
+
+                .navbar-nav .nav-link.active,
+                .navbar-nav .nav-link:focus,
+                .navbar-nav .nav-link:hover {
+                    color: rgb(255, 99, 1) !important;
+                }
+            </style>
+
+            <!-- JavaScript untuk Menandai Navbar Aktif -->
+            <script>
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+                navLinks.forEach(link => {
+                    if (link.href === window.location.href) {
+                        link.classList.add('active');
+                    }
+                });
+            </script>
+
                 <!-- Tombol DONASI -->
                 <a href="donasi.html" class="btn-donasi-premium">
                     <img src="img/donasi2.png" alt="Donasi Button" class="donasi-image">
