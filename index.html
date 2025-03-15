@@ -108,31 +108,7 @@
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
-    <head>
-        <meta charset="utf-8">
-        <title>Fiber Permata Kasih</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
-
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap"
-            rel="stylesheet">
-
-        <!-- Icon Font Stylesheet -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-        <style>
-
-        </style>
-    </head>
+    
 
 
     <!-- Start of LiveChat (www.livechat.com) code -->
@@ -219,7 +195,7 @@
 
     <!-- End of LiveChat code -->
 
-    <!-- End of LiveChat code -->
+    
 
 
 
@@ -492,62 +468,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </body>
 
-<!-- Timer Waktu Kunjungan -->
-<div id="visit-timer" class="timer-box">
-    ⏳ <span id="time-spent">00:00:00</span>
-</div>
-
-
-
-<!-- CSS untuk Timer -->
-<style>
-    .timer-box {
-
-        color: rgb(240, 111, 13);
-        padding: 2px 6px;
-        /* Padding lebih kecil */
-        font-size: 10px;
-        /* Ukuran font lebih kecil */
-        font-weight: bold;
-        border-radius: 10px;
-        /* Border radius lebih kecil */
-        box-shadow: 0px 1px 3px rgba(255, 117, 140, 0.3);
-        /* Shadow lebih halus */
-        display: inline-block;
-        white-space: nowrap;
-    }
-</style>
-
-<!-- JavaScript Timer -->
-<script>
-    let startTime = sessionStorage.getItem("visitStartTime") || new Date().getTime();
-    sessionStorage.setItem("visitStartTime", startTime);
-
-    function updateVisitTimer() {
-        let now = new Date().getTime();
-        let elapsedTime = Math.floor((now - startTime) / 1000); // Waktu dalam detik
-
-        // Menghitung jam, menit, dan detik
-        let hours = Math.floor(elapsedTime / 3600);
-        let minutes = Math.floor((elapsedTime % 3600) / 60);
-        let seconds = elapsedTime % 60;
-
-        // Format waktu sebagai HH:MM:SS
-        let formattedTime =
-            (hours < 10 ? "0" : "") + hours + ":" +
-            (minutes < 10 ? "0" : "") + minutes + ":" +
-            (seconds < 10 ? "0" : "") + seconds;
-
-        document.getElementById("time-spent").innerText = formattedTime;
-    }
-
-    setInterval(updateVisitTimer, 1000);
-</script>
 
 
 
 
 <body>
+
+    
     <div class="container-xxl bg-white p-0">
 
         <!-- Spinner Start -->
@@ -559,6 +486,8 @@
             </div>
         </div>
         <!-- Spinner End -->
+
+        
 
 
         <!-- Navbar Start -->
@@ -583,21 +512,21 @@
                     <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
                 </div>
             </div>
-
+            
             <!-- CSS untuk Warna Aktif -->
             <style>
                 .navbar-nav .nav-link {
                     color: #000;
                     transition: color 0.3s ease;
                 }
-
+            
                 .navbar-nav .nav-link.active,
                 .navbar-nav .nav-link:focus,
                 .navbar-nav .nav-link:hover {
                     color: rgb(255, 99, 1) !important;
                 }
             </style>
-
+            
             <!-- JavaScript untuk Menandai Navbar Aktif -->
             <script>
                 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -608,6 +537,7 @@
                     }
                 });
             </script>
+                
 
 
             <!-- Tombol DONASI -->
@@ -687,93 +617,95 @@
                                         .</p>
                                     <!-- Tombol VIDEO dan DONATUR KAMI -->
                                     <div class="btn-container">
-                                        <a href="#" class="btn-video">
+                                        <a href="#" class="btn btn-video">
                                             <i class="fa fa-play-circle"></i> VIDEO
                                         </a>
-                                        <a href="#" class="b
-                                        tn-donatur">
+                                        <a href="#" class="btn btn-donatur">
                                             <i class="fa fa-users"></i> DONATUR KAMI
                                         </a>
                                     </div>
-
 
                                     <!-- CSS Tambahan -->
                                     <style>
                                         .btn-container {
                                             display: flex;
                                             justify-content: center;
-                                            gap: 20px;
-                                            /* Jarak antar tombol */
+                                            gap: 15px;
                                             align-items: center;
+                                            flex-wrap: wrap;
                                         }
 
-                                        .btn-video,
-                                        .btn-donatur {
-                                            background: linear-gradient(135deg, #00c6ff, #0072ff);
+                                        .btn {
+                                            background: rgba(255, 255, 255, 0.2);
+                                            backdrop-filter: blur(10px);
                                             color: white;
-                                            border: none;
-                                            padding: 12px 30px;
-                                            font-size: 18px;
+                                            border: 2px solid rgba(255, 255, 255, 0.3);
+                                            padding: 10px 24px;
+                                            font-size: 16px;
                                             font-weight: bold;
                                             text-transform: uppercase;
-                                            border-radius: 50px;
+                                            border-radius: 40px;
                                             display: inline-flex;
                                             align-items: center;
-                                            gap: 12px;
+                                            gap: 10px;
                                             text-decoration: none;
-                                            transition: all 0.3s ease-in-out;
+                                            transition: all 0.4s ease-in-out;
+                                            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2);
                                             position: relative;
                                             overflow: hidden;
-                                            box-shadow: 0px 4px 10px rgba(0, 114, 255, 0.3);
                                         }
 
-                                        .btn-video:hover,
-                                        .btn-donatur:hover {
-                                            transform: scale(1.05);
-                                            background: linear-gradient(135deg, #0072ff, #00c6ff);
-                                            box-shadow: 0px 6px 15px rgba(0, 114, 255, 0.4);
+                                        .btn-video {
+                                            background: linear-gradient(135deg, #00c6ff, #0072ff);
                                         }
 
-                                        .btn-video i,
-                                        .btn-donatur i {
+                                        .btn-donatur {
+                                            background: linear-gradient(135deg, #ff6a00, #ee0979);
+                                        }
+
+                                        .btn:hover {
+                                            transform: translateY(-2px);
+                                            box-shadow: 0px 6px 18px rgba(255, 255, 255, 0.3);
+                                        }
+
+                                        .btn i {
                                             transition: transform 0.3s ease-in-out;
                                         }
 
-                                        .btn-video:hover i,
-                                        .btn-donatur:hover i {
-                                            transform: translateX(8px);
+                                        .btn:hover i {
+                                            transform: translateX(4px);
                                         }
 
-                                        /* Animasi masuk */
+                                        @keyframes fadeIn {
+                                            from {
+                                                opacity: 0;
+                                                transform: translateY(10px);
+                                            }
+
+                                            to {
+                                                opacity: 1;
+                                                transform: translateY(0);
+                                            }
+                                        }
+
                                         .btn-video {
-                                            animation: slideInLeft 0.6s ease-out;
+                                            animation: fadeIn 0.6s ease-out;
                                         }
 
                                         .btn-donatur {
-                                            animation: slideInRight 0.6s ease-out;
+                                            animation: fadeIn 0.8s ease-out;
                                         }
 
-                                        @keyframes slideInLeft {
-                                            from {
-                                                opacity: 0;
-                                                transform: translateX(-30px);
+                                        @media (max-width: 768px) {
+                                            .btn {
+                                                padding: 8px 20px;
+                                                font-size: 14px;
+                                                border-radius: 30px;
+                                                gap: 8px;
                                             }
 
-                                            to {
-                                                opacity: 1;
-                                                transform: translateX(0);
-                                            }
-                                        }
-
-                                        @keyframes slideInRight {
-                                            from {
-                                                opacity: 0;
-                                                transform: translateX(30px);
-                                            }
-
-                                            to {
-                                                opacity: 1;
-                                                transform: translateX(0);
+                                            .btn-container {
+                                                gap: 10px;
                                             }
                                         }
                                     </style>
@@ -799,7 +731,7 @@
                                     </p>
                                     <!-- Tombol VIDEO dan DONATUR KAMI -->
                                     <div class="btn-container">
-                                        <a href="video.html" class="btn-video">
+                                        <a href="#" class="btn-video">
                                             <i class="fa fa-play-circle"></i> VIDEO
                                         </a>
                                         <a href="#" class="btn-donatur">
@@ -1980,74 +1912,76 @@
                         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                             style="max-width: 600px;">
                             <h1 class="mb-3"
-                                style="font-family:lobster two, cursive 'Playfair Display', serif; font-weight: 700; color: #ff758c;">
+                                style="font-family: 'Lobster Two', cursive, 'Playfair Display', serif; font-weight: 700; color: #ff758c;">
                                 💖 Suara Donatur Kami!</h1>
                             <p style="font-size: 18px; color: #555;">Kami ingin membagikan pengalaman dan cerita dari
-                                para
-                                donatur kami yang telah membantu mewujudkan harapan anak-anak.</p>
+                                para donatur kami
+                                yang telah membantu mewujudkan harapan anak-anak.</p>
                         </div>
                         <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-
                             <!-- Testimonial Item -->
-                            <div class="testimonial-item rounded p-5">
-                                <p class="fs-5" style="font-style: italic; color: #333;">"Saya merasa sangat bangga
-                                    dapat
-                                    menjadi bagian dari misi Panti Asuhan Fiber Permata Kasih. Mereka melakukan
-                                    pekerjaan yang
-                                    luar biasa dalam membantu anak-anak yang membutuhkan."</p>
+                            <div class="testimonial-item rounded p-4">
+                                <p class="mb-4" style="font-style: italic; color: #333;">"Saya merasa sangat bangga
+                                    dapat menjadi bagian
+                                    dari misi Panti Asuhan Fiber Permata Kasih. Mereka melakukan pekerjaan yang luar
+                                    biasa dalam
+                                    membantu anak-anak yang membutuhkan."</p>
                                 <div class="d-flex align-items-center">
                                     <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg"
                                         src="img/testimonial-1.jpg"
-                                        style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                                        style="width: 80px; height: 80px; border: 3px solid #ff758c;">
                                     <div class="ps-3">
                                         <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Ibu Sry</h4>
                                         <span style="color: #777;">Ibu Rumah Tangga</span>
                                     </div>
-                                    <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                    <i class="fa fa-quote-right fa-2x ms-auto d-none d-sm-flex"
                                         style="color: rgba(255, 117, 140, 0.8);"></i>
                                 </div>
                             </div>
 
                             <!-- Testimonial Item -->
-                            <div class="testimonial-item rounded p-5">
-                                <p class="fs-5" style="font-style: italic; color: #333;">"Saya sangat terkesan dengan
-                                    transparansi dan akuntabilitas Panti Asuhan Fiber Permata Kasih. Mereka benar-benar
-                                    menggunakan donasi saya untuk anak-anak yang membutuhkan."</p>
+                            <div class="testimonial-item rounded p-4">
+                                <p class="mb-4" style="font-style: italic; color: #333;">"Saya sangat terkesan dengan
+                                    transparansi dan
+                                    akuntabilitas Panti Asuhan Fiber Permata Kasih. Mereka benar-benar menggunakan
+                                    donasi saya untuk
+                                    anak-anak yang membutuhkan."</p>
                                 <div class="d-flex align-items-center">
                                     <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg"
                                         src="img/testimonial-2.jpg"
-                                        style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                                        style="width: 80px; height: 80px; border: 3px solid #ff758c;">
                                     <div class="ps-3">
                                         <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Bapak Rudi</h4>
                                         <span style="color: #777;">Pengusaha</span>
                                     </div>
-                                    <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                    <i class="fa fa-quote-right fa-2x ms-auto d-none d-sm-flex"
                                         style="color: rgba(255, 117, 140, 0.8);"></i>
                                 </div>
                             </div>
 
                             <!-- Testimonial Item -->
-                            <div class="testimonial-item rounded p-5">
-                                <p class="fs-5" style="font-style: italic; color: #333;">"Membantu Panti Asuhan Fiber
-                                    Permata
-                                    Kasih adalah cara saya untuk memberikan kembali kepada masyarakat. Saya merasa
-                                    sangat
-                                    bahagia dapat menjadi bagian dari komunitas yang peduli dengan anak-anak yang
-                                    membutuhkan."
-                                </p>
+                            <div class="testimonial-item rounded p-4">
+                                <p class="mb-4" style="font-style: italic; color: #333;">"Membantu Panti Asuhan Fiber
+                                    Permata Kasih
+                                    adalah cara saya untuk memberikan kembali kepada masyarakat. Saya merasa sangat
+                                    bahagia dapat
+                                    menjadi bagian dari komunitas yang peduli dengan anak-anak yang membutuhkan. Ini
+                                    adalah pengalaman
+                                    yang sangat berarti bagi saya dan saya berharap bisa terus berkontribusi lebih
+                                    banyak lagi di masa
+                                    depan."</p>
                                 <div class="d-flex align-items-center">
                                     <img class="img-fluid flex-shrink-0 rounded-circle shadow-lg"
                                         src="img/testimonial-3.jpg"
-                                        style="width: 100px; height: 100px; border: 3px solid #ff758c;">
+                                        style="width: 80px; height: 80px; border: 3px solid #ff758c;">
                                     <div class="ps-3">
                                         <h4 class="mb-1" style="color: #ff758c; font-weight: bold;">Dewi</h4>
                                         <span style="color: #777;">Dokter</span>
                                     </div>
-                                    <i class="fa fa-quote-right fa-2x text-light ms-auto d-none d-sm-flex"
+                                    <i class="fa fa-quote-right fa-2x ms-auto d-none d-sm-flex"
                                         style="color: rgba(255, 117, 140, 0.8);"></i>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -2055,16 +1989,97 @@
 
                 <!-- CSS Tambahan -->
                 <style>
+                    /* Default styles for all devices */
+                    body {
+                        font-size: 16px;
+                        margin: 0;
+                        padding: 0;
+                    }
+
                     .testimonial-item {
                         background: linear-gradient(135deg, #fff, #ffe4e9);
                         border-radius: 15px;
                         box-shadow: 0px 4px 15px rgba(255, 117, 140, 0.2);
                         transition: all 0.3s ease-in-out;
+                        width: 350px;
+                        /* Lebar tetap */
+                        height: 300px;
+                        /* Tinggi tetap */
+                        margin: 0 auto;
+                        /* Memusatkan item */
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
                     }
 
                     .testimonial-item:hover {
                         transform: scale(1.02);
                         box-shadow: 0px 6px 20px rgba(255, 117, 140, 0.4);
+                    }
+
+                    .testimonial-item p {
+                        max-height: 180px;
+                        /* Batas tinggi area teks */
+                        overflow-y: auto;
+                        /* Scroll jika teks terlalu panjang */
+                        word-wrap: break-word;
+                        /* Memastikan teks membungkus */
+                        margin-bottom: 15px;
+                        /* Jarak ke elemen bawah */
+                        padding-right: 10px;
+                        /* Ruang untuk scrollbar */
+                    }
+
+                    /* Styling scrollbar (opsional) */
+                    .testimonial-item p::-webkit-scrollbar {
+                        width: 6px;
+                    }
+
+                    .testimonial-item p::-webkit-scrollbar-thumb {
+                        background: #ff758c;
+                        border-radius: 3px;
+                    }
+
+                    /* Styles for mobile devices */
+                    @media (max-width: 768px) {
+                        body {
+                            font-size: 14px;
+                            /* Mengurangi ukuran font untuk mobile */
+                        }
+
+                        .container {
+                            width: 100%;
+                            /* Membuat container penuh lebar pada mobile */
+                        }
+
+                        .testimonial-item {
+                            width: 100%;
+                            /* Lebar penuh di mobile */
+                            height: 280px;
+                            /* Tinggi sedikit lebih kecil di mobile */
+                            padding: 15px !important;
+                            /* Padding konsisten */
+                        }
+
+                        .testimonial-item p {
+                            max-height: 160px;
+                            /* Sesuaikan tinggi teks di mobile */
+                        }
+
+                        .owl-carousel .owl-item {
+                            padding: 10px;
+                            /* Memberi ruang antar item */
+                        }
+                    }
+
+                    /* Styles for desktop */
+                    @media (min-width: 769px) {
+                        .testimonial-item {
+                            width: 350px;
+                            /* Lebar tetap di desktop */
+                            height: 300px;
+                            /* Tinggi tetap di desktop */
+                        }
                     }
                 </style>
 
@@ -2345,8 +2360,7 @@
                     }
                 </style>
 
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            
 
                 <!-- JavaScript Libraries -->
                 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
